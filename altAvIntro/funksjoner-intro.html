@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift')
+
+      function helloWorld() {
+        utskrift.innerHTML +='Hello world! ';
+      }
+
+    //  helloWorld();
+
+      function helloName(name) {
+        utskrift.innerHTML += 'Hello ' + name;
+      }
+
+      //helloName('Daniel');
+
+      function endreBakgrunnsfarge(farge) {
+        document.body.style.backgroundColor = farge;
+        helloName('Daniel');
+      }
+
+      //endreBakgrunnsfarge('grey');
+
+      //utskrift.innerHTML = Math.random();   //over-skriver helloName pga =, hvis vi tar += skjer det ikke
+
+      function hellowWorld2() {
+        return 'Hello world!';
+      }
+
+      var hei = hellowWorld2();
+      //utskrift.innerHTML = hei;
+
+      function leggeSammen(tall1, tall2) {
+        return tall1 + tall2
+      }
+
+      var sum = leggeSammen(10,13)
+      //utskrift.innerHTML = sum;
+
+      function abc(a,b,c) {
+        var diskriminant = b**2-4*a*c;
+        if (diskriminant < 0) {
+          return 'Ingen løsning';
+        }
+        else if (diskriminant == 0) {
+          var teller = -b;
+          var nevner = 2*a;
+          return teller / nevner;
+        }
+        else {
+          var teller1 = -b + Math.sqrt(diskriminant)
+          var teller2 = -b - Math.sqrt(diskriminant)
+          var nevner = 2*a;
+          return [teller1/nevner, teller2/nevner];
+        }
+      }
+
+      var losning = abc(1,-1,0);
+      //utskrift.innerHTML = losning;
+
+      function arealTrekant(b,h) {
+        var areal = b*h/2
+        return areal;
+      }
+      var bredde = Number(prompt('Skriv inn en bredde'))
+      var hoyde = Number(prompt('Skriv inn en høyde'))
+      var areal = arealTrekant(bredde,hoyde);
+      utskrift.innerHTML = areal;
+
+    </script>
+
+  </body>
+</html>

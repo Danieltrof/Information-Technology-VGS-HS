@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="paragraf"></p>
+
+    <img src="Bilder til IT/dog.jpeg" width="800" id="bilde">
+
+    <script type="text/javascript">
+
+      //alert('Daniel');  //får opp en boks
+      //document.write('Daniel'); //Skriver til nettsiden
+      //prompt ('Hvor gammel er du?');  //Får opp en boks med spørsmål og mulighet for svar
+      //document.body.innerHTML = '<h1>Velkommen til IT2</h1><p>Dette bir gøy</p>'; //overskriver document.write koden
+
+      document.getElementById('paragraf').innerHTML = 'Hei <br>';
+      document.getElementById('paragraf').innerHTML += 'Hallo';
+      document.getElementById('bilde').src = "Bilder til IT/fatcat2.jpeg";
+
+      var paragraf = document.getElementById('paragraf');
+
+      paragraf.innerHTML = 'Dette var en fin time';
+
+    </script>
+
+  </body>
+</html>

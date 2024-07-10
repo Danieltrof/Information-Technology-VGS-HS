@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1>Konkurranser for alle aldre</h1>
+    <h3>Tast inn din alder for å se hvilke konkurranser vi har for deg</h3>
+
+    <p id="utskrift"></p>
+
+    <input type="number" id="alderInp" min="3" max="130">
+    <button id="knapp">Bekreft</button>
+
+    <script type="text/javascript">
+
+      var alderSel = document.getElementById('alderInp');
+      var knapp = document.getElementById('knapp');
+      var utskrift = document.getElementById('utskrift');
+
+      var barneKonkurranser = ["Barnesanger", "Ville dyr–lykkehjul", "Land og flagg"]
+      var ungdomsKonkurranser = ["Pop & rock", "Bilmerker", "Hva vet du om fotball?"]
+      var voksenKonkurranser = ["Quiz", "Historie i vårt århundre", "Påskelabyrint"]
+
+      var listeStart = '<ul>';
+      var liste = "";
+      var listeSlutt = '</ul>';
+
+      knapp.onclick = function(){
+        utskrift.innerHTML = "<br> For alderen " + alderSel.value + " år har vi følgde konkurranser: <br>"
+        + listeStart + Sjekkalder(alderSel.value) + listeSlutt;
+      }
+
+      function Sjekkalder() {
+        if (alderSel.value<12) {
+          for (var i = 0; i < barneKonkurranser.length; i++) {
+            utskrift.innerHTML += "<li>" + barneKonkurranser[i] + "</li>";
+          }
+        }
+        else if (alderSel.value<18) {
+          for (var i = 0; i < ungdomsKonkurranser.length; i++) {
+            utskrift.innerHTML += "<li>" + ungdomsKonkurranser[i] + "</li>";
+          }
+        }
+        else if (alderSel.value>17) {
+          for (var i = 0; i < voksenKonkurranser.length; i++) {
+            utskrift.innerHTML += "<li>" + voksenKonkurranser[i] + "</li>";
+          }
+        }
+      }
+
+    </script>
+
+  </body>
+</html>

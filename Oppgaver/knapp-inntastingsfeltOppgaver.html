@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <input type="text" id="felt1" placeholder="Endring av paragraf">
+    <button id="knapp">Bekreft</button>
+    <p id="utskrift">Tast inn din paragraf</p>
+
+    <script type="text/javascript">
+
+      var felt1 = document.getElementById('felt1');
+      var knapp = document.getElementById('knapp');
+      var utskrift = document.getElementById('utskrift');
+
+      knapp.onclick = function() {
+        var endring = felt1.value;
+        utskrift.innerHTML = 'Endringen av et paragraf har blitt utført; <br>' + endring
+      }
+
+
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <style type="text/css">
+
+      #feedDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+    </style>
+
+    <div id="logoDiv">
+      <img src="bilder/InstagramLogo.png"> <select id="kontoSel"></select>
+    </div>
+
+    <div id="feedDiv"></div>
+
+    <script type="text/javascript">
+
+      var logoDiv = document.getElementById('logoDiv');
+      var kontoSel = document.getElementById('kontoSel');
+      var feedDiv = document.getElementById('feedDiv');
+
+      var alex = {
+        navn: "alex_eubank15",
+        pfp: "bilder/Alex_pfp.jpeg",
+        bilde1: "bilder/Alex_1.jpeg",
+        description1: "alex_eubank15 Tell me a motivational quote you live by",
+        bilde2: "bilder/Alex_2.jpeg",
+        bilde3: "bilder/Alex_3.jpeg"
+      }
+
+      var rock = {
+        navn: "therock",
+        pfp: "bilder/TheRock_pfp.jpeg",
+        bilde1: "bilder/TheRock_1.jpeg",
+        description1: "therock Tell me a motivational quote you live by"
+        bilde2: "bilder/TheRock_2.jpeg",
+        bilde3: "bilder/TheRock_3.jpeg"
+      }
+
+      var kontoliste = [alex, rock];
+
+      var str1 = "<option>Velg en konto</option>";
+
+      for (var i = 0; i < kontoliste.length; i++) {
+        str1 += "<option>" + kontoliste[i].navn + "</option>"
+      }
+
+      kontoSel.innerHTML = str1;
+
+      var str2 = '';
+
+      kontoSel.onchange = function() {
+        var valgtKonto = kontoSel.selectedIndex - 1;
+        var divStart = '<div class="nyKonto">';
+        var pfp = '<img src=" ' + kontoliste[valgtKonto].pfp + '" width=50px height=50px>';
+        var kontoNavn = '<p>' + kontoliste[valgtKonto].navn + '</p>';
+        var innlegg1 = '<img src=" ' + kontoliste[valgtKonto].bilde1 + '" width=400px height=400px>' + kontoliste[valgtKonto].description1;
+        var divSlutt = '</div>';
+        str2 = divStart + pfp + kontoNavn + innlegg1 + divSlutt;
+        feedDiv.innerHTML = str2;
+      }
+
+
+
+    </script>
+
+  </body>
+</html>

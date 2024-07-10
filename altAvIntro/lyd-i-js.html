@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <audio src="lydfiler/piano.mp3" id="lyd"></audio>
+    <button id="spillav">Spill av</button>
+
+    <script type="text/javascript">
+
+      var lyd = document.getElementById('lyd');
+      var spillav = document.getElementById('spillav');
+
+      lyd.currentTime = 5;
+
+  /*    lyd.ontimeupdate = function () {
+        if (lyd.currentTime > 7 && lyd.currentTime < 7.5) { //Hvis lyden er et sted mellom 7 og 7,5 så hopper den til 10.
+          lyd.currentTime = 10;
+        }
+      }      */
+
+      var lyder = ['lydfiler/piano.mp3','lydfiler/trommer.mp3','lydfiler/Bjeff.mp3'];
+      var i = 0;
+
+      lyd.onended = function () {
+        i++;
+        if (i == lyder.length) {
+          i = 0;
+        }
+        lyd.src = lyder[i];
+        lyd.currentTime = 0;
+        lyd.play();
+      }
+
+      spillav.onclick = function () {
+          lyd.play();
+      }
+
+
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"> </p>
+
+    <script type="text/javascript">
+
+    var utskrift = document.getElementById('utskrift');
+/*
+    var talliste = [1,2,4,7,4,2,2]
+
+    var objekt = {
+      navn: 'Mikkel'
+      alder: 29,
+      interesser: ['fotball', 'Matte', 'IT']
+    }
+
+    utskrift.innerHTML = objekt;
+*/
+
+/*
+    var tall = 5;
+    tall += 2; //tall = tall+2
+    tall -=3;
+    tall /=2;
+    tall *=3;
+    tall++; //tall++ = tall+1
+
+    utskrift.innerHTML = tall;
+*/
+
+    var allergier = prompt('Har du noen allergier?');
+
+    if (allergier.toLowerCase()== 'ja') { //toLowerCase gjør svaret om til små bokstaver. nå fungerer JA
+      var oppgitteAllergier = prompt('Hvilke allergier har du?');
+      utskrift.innerHTML = 'Du har oppgitt følgende allergi(er): ' + oppgitteAllergier + '<br><br>';
+    }
+
+    utskrift.innerHTML += 'Vi gleder oss til å se deg!';
+
+    
+
+
+    </script>
+
+  </body>
+</html>

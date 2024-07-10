@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <input type="text" id="navnInp" placeholder="Navn">
+    <input type="number" id="alderInp" placeholder="Alder">
+    <input type="text" id="raseInp" placeholder="Rase">
+    <button id="knapp">Bekreft</button>
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+    var navnInp = document.getElementById('navnInp');
+    var alderInp = document.getElementById('alderInp');
+    var raseInp = document.getElementById('raseInp');
+    var knapp = document.getElementById('knapp');
+    var utskrift = document.getElementById('utskrift');
+
+    var hunder = [];
+
+    knapp.onclick = function() {
+      nyHund(navnInp.value,alderInp.value,raseInp.value);
+
+      utskrift.innerHTML = "Dette er hundene som finnes: <br>";
+      for (var i = 0; i < hunder.length; i++) {
+        utskrift.innerHTML += hunder[i].navn + ", " + hunder[i].alder + ", " + hunder[i].rase + "<br>";
+      }
+    }
+
+    function nyHund(navn, alder, rase) {
+      var hund = {
+        navn: navn,
+        alder: alder,
+        rase: rase
+      }
+      hunder.push(hund);
+    }
+
+    </script>
+
+  </body>
+</html>

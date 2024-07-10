@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta name="author" content="delmatte.no">
+	<title>Oppgave 3 - Program for å legge opp egen sykkelrute</title>
+</head>
+<body>
+<h1>Oppgave 3: Program for å legge opp egen sykkelrute</h1>
+<img src="stortkartostfold.gif" style="float: left">
+<div id="stedListe">Sykkelruten din går følgende steder: </div> <br>
+
+<b>Distanse: </b> <span id="sumAvstand"></span> km
+<b>Tid: </b> <span id="sumTid"></span> timer <br><br>
+
+
+Velg by:
+ <select id ="stedSlc">
+	<option value=0>Askim</option>
+	<option value=1>Halden</option>
+	<option value=2>Fredrikstad</option>
+	<option value=3>Moss</option>
+	<option value=4>Ørje</option>
+</select><button onclick="Leggtilby()">Legg til by</button>
+
+<script>
+//Inneholder avstandene til stedene
+var data = [
+    {   navn: "Askim", // 0
+        avstander: {
+			1: 62.3,
+            2: 58.8,
+            3: 44.6,
+            4: 33.2
+        }
+    },
+        {   navn: "Halden", // 1
+            avstander: {
+            0: 62.3,
+            2: 37.9,
+            3: 65.3,
+            4: 60.1
+        }
+    },
+        {   navn: "Fredrikstad", // 2
+            avstander: {
+            0: 58.8,
+            1: 37.9,
+            3: 40.5,
+            4: 78.5
+        }
+    },
+        {	navn: "Moss", // 3
+			avstander: {
+            0: 44.6,
+            1: 65.3,
+            2: 40.5,
+            4: 77.6
+        }
+    },
+        {	navn: "Ørje", // 4
+			avstander: {
+            0: 33.2,
+            1: 60.1,
+            2: 78.5,
+            3: 77.6
+        }
+    }
+];
+var stedSlc = document.getElementById("stedSlc");
+var byVerdi = -1; //setter denne til en startverdi for å unngå beskjed om at du ikke kan reise til en by du er i.
+var antSykkeletapper = -1;
+var totDistanse = 0;
+
+function Leggtilby(){
+	if (byVerdi == stedSlc.value) {
+		alert("Du kan ikke reise til byen du er i.")
+		return
+	}
+	antSykkeletapper = antSykkeletapper +1;
+	var byP = document.createElement("P");
+	byP.innerHTML = data[stedSlc.value].navn;
+	document.getElementById("stedListe").appendChild(byP);
+
+	regnut();
+	byVerdi = stedSlc.value; //byVerdi er den forrige verdien til valgt by. bruker stedSlc.value for "nå-by".
+}
+
+function regnut(){
+	if (antSykkeletapper == 0){return} // Regner ikke ut avstand hvis det er 0 sykkeletapper
+	totDistanse = totDistanse + data[byVerdi].avstander[stedSlc.value];
+	document.getElementById("sumAvstand").innerHTML = totDistanse;
+	var tid = totDistanse/20;
+	document.getElementById("sumTid").innerHTML = tid.toFixed(0);;
+}
+</script>
+</body>
+</html>

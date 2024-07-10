@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+/*
+      var sitron = {
+        navn: "Sitron",
+        antall: 0.5,
+        enhet: "Stykk"
+      }
+
+      var solsikkeolje = {
+        navn: "Solsikkeolje",
+        antall: 2,
+        enhet: "dL"
+      }
+*/
+
+      function nyIngrediens(navn,antall,enhet) {
+        var obj = {
+          navn: navn,
+          antall: antall,
+          enhet: enhet
+        }
+        return obj;
+      }
+
+      //var sitron = nyIngrediens("Sitron", 0.5, "Stykk");
+      //var solsikkeolje = nyIngrediens("Solsikkeolje", 2, "dL")
+
+    //  document.write(sitron.antall + " " + sitron.enhet + " " + sitron.navn)
+
+      function utskrift(ingrediens) {
+        return ingrediens.antall + " " + ingrediens.enhet + " " + ingrediens.navn
+      }
+
+      //document.write(utskrift(sitron));
+      //document.write(utskrift(solsikkeolje));
+
+      class Ingrediens {
+        constructor(navn,antall,enhet) {
+          this.navn = navn;
+          this.antall = antall;
+          this.enhet = enhet;
+        }
+        get utskrift() {
+          return "<br>" + this.antall + " " + this.enhet + " " + this.navn;
+        }
+      }
+
+      var sitron = new Ingrediens("Sitron", 0.5, "Stykk");
+      var solsikkeolje = new Ingrediens("Solsikkeolje", 2, "dL");
+
+      document.write(sitron.utskrift)
+      document.write(solsikkeolje.utskrift)
+
+      class Krydder extends Ingrediens {
+        constructor(navn, antall, enhet, tilstand) {
+          super(navn, antall, enhet);
+          this.tilstand = tilstand;
+        }
+        get utskrift() {
+          return this.antall + " " + this.enhet + " " + this.navn + ", " + this.tilstand;
+        }
+      }
+
+      var gresslok = new Krydder("Gressløk", 2, "Klype", "Fersk")
+
+      document.write(gresslok.utskrift);
+
+      class Bil {
+        constructor(merke, modell, bensinmotor) {
+          this.merke = merke;
+          this.modell = modell;
+          this.bensinmotor = bensinmotor;
+        }
+        get motoreffekt() {
+          return this.bensinmotor;
+        }
+      }
+
+      class Hybdridbil extends Bil {
+        constructor(merke,modell,bensinmotor,elmotor) {
+          super(merke, modell, bensinmotor);
+          this.elmotor = elmotor;
+        }
+        get motoreffekt() {
+          return this.bensinmotor + this.elmotor;
+        }
+      }
+
+      var audia1 = new Hybridbil("Audi", "A1", 100, 50)
+
+      document.write(audia1.motoreffekt);
+
+      var dato = new Date();
+      document.write(dato.getMonth())
+
+    </script>
+
+  </body>
+</html>

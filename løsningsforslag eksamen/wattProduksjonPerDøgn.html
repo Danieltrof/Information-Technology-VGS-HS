@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta name="author" content="delmatte.no">
+	<title>Oppgave 3 - Wattproduksjon per døgn</title>
+</head>
+<body>
+<h1>Oppgave 3: Wattproduksjon per døgn</h1>
+
+
+<table>
+	<tr>
+		<th>Periode</th>
+		<th>Vindstyrke (m/s)</th>
+		<th>Effekt [W]</th>
+		<th>Energi [kWh]</th>
+	</tr>
+	<tr>
+		<td>Kl. 2-8</td>
+		<td><input type = "number" id = "periode0" value=0></input></td>
+		<td id="navn0"></td>
+		<td id="energi0"></td>
+	</tr>
+	<tr>
+		<td>Kl. 8-14</td>
+		<td><input type = "number" id = "periode1" value=0></input></td>
+		<td id="navn1"></td>
+		<td id="energi1"></td>
+	</tr>
+	<tr>
+		<td>Kl. 14-20</td>
+		<td><input type = "number" id = "periode2" value=0></input></td>
+		<td id="navn2"></td>
+		<td id="energi2"></td>
+	</tr>
+	<tr>
+		<td>Kl. 20-2</td>
+		<td><input type = "number" id = "periode3" value=0></input></td>
+		<td id="navn3"></td>
+		<td id="energi3"></td>
+	</tr>
+</table>
+<input type = "button" value = "Regn ut" onclick = "finish()"></input>
+<p id="test">Det er produsert totalt: </p>
+<p><b>Advarsel:</b>Oppgaveformuleringen er feil. Watt måler ikke energi, men effekt. Det blir meningsløst å snakke om wattproduksjon per døgn slik oppgaven spør om. Oppgaven burde spurt om antall Joule eller kWh som blir produsert iløpet av dette døgnet.</p>
+
+<script>
+var data = [
+        {
+            navn: "stille", // 0
+            ms: 0.2,
+            watt: 0
+           },
+        {
+            navn: "Flau vind", // 1
+            ms: 1.5,
+            watt: 0
+           },
+		          {
+            navn: "Svak vind", // 2
+            ms: 3.3,
+            watt: 2
+           },
+        {
+            navn: "Lett bris", // 3
+            ms: 5.4,
+            watt: 10
+           },
+        {
+            navn: "Laber bris", // 4
+            ms: 7.9,
+            watt: 60
+           },
+        {
+            navn: "Frisk bris", // 5
+            ms: 10.7,
+            watt: 150
+           },
+        {
+            navn: "Liten kuling", // 6
+            ms: 13.8,
+            watt: 400
+           },
+        {
+            navn: "Stiv kuling", // 7
+            ms: 17.1,
+            watt: 500
+           },
+		          {
+            navn: "Sterk kuling", // 8
+            ms: 20.7,
+            watt: 0
+           },
+        {
+            navn: "Liten storm", // 9
+            ms: 24.4,
+			watt: 0
+           },
+        {
+            navn: "Full storm", // 10
+            ms: 28.4,
+			watt: 0
+           },
+        {
+            navn: "Sterk storm", // 11
+            ms: 32.6,
+			watt: 0
+           },
+		{
+			navn: "Orkan", // 12
+            ms: 100,
+			watt: 0
+           }
+    ];
+
+function finish() {
+	var k;
+	var effekt;
+	var energi6timer;
+	var energiTot=0;
+	for (k = 0; k < 4; k++) {
+		var vindhastigheten = parseFloat(document.getElementById("periode"+k).valueAsNumber.toFixed(1));
+		if (vindhastigheten<0) {
+			alert("Sett inn et positivt tall i periode"+k +". Vind kan ikke være negativ.")
+			return
+		}
+		var i;
+		for (i = 0; i < data.length-1; i++) {
+			if (vindhastigheten<data[i].ms) {
+				break
+				}
+			}
+		var effekt = data[i].watt;
+		if (vindhastigheten>15) {
+			effekt = 0;
+			}
+		energi6timer = effekt*6/1000;
+		energiTot= energi6timer + energiTot;
+		document.getElementById("navn" + k).innerHTML = effekt;
+		document.getElementById("energi" + k).innerHTML = energi6timer;
+		}
+test.innerHTML= 'Det er produsert totalt: ' + energiTot.toFixed(3) + ' kWh dette døgnet';
+}
+</script>
+</body>
+</html>

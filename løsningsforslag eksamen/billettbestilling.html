@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta name="author" content="delmatte.no">
+	<title>Oppgave 2: Bestillinger</title>
+</head>
+<body>
+<h1>Oppgave 2: Bestillinger</h1>
+<select id="slcForestilling" size=4></select><p></p>
+Antall voksne (Pris 100)   <input style="width:50px" min="0" value="0" type="number" id = "antVoks"></input>
+Antall barn (Pris 50)      <input style="width:50px" min="0" value="0" type="number" id = "antBarn"></input><br><br>
+
+<button onclick="Bestill()">Bekreft bestilling</button>
+<div id="txtBekreft"></div>
+
+<script>
+var data = [ "Trondheim kammermusikkfestival, 1 juni", "Spill opp! 4. juni", "Onsdagskonserten. 6. juni", "Joikat. Joik til folket. 9. juni"];
+
+//Fyller selectboksen med valgene.
+for (var i = 0; i < data.length; i++) {
+		var option = document.createElement("option");
+		option.text = data[i];
+		option.value = data[i];
+		slcForestilling.add(option)
+	}
+
+function Bestill(){
+    var SlcIndex = slcForestilling.selectedIndex;
+	var antVoks = parseFloat(document.getElementById("antVoks").valueAsNumber.toFixed(0));
+	var antBarn = parseFloat(document.getElementById("antBarn").valueAsNumber.toFixed(0));
+	var antBilletter = antVoks + antBarn;
+	var pris = antVoks*100 + antBarn*50;
+	if(SlcIndex == -1 || antBilletter == 0) { //sjekker at de har valgt forestilling og antall billetter.
+		 txtBekreft.innerHTML = "Du må velge en forestilling og antall deltagere.";
+		 return
+	}
+	txtBekreft.innerHTML = "<p> Du har valgt " + antBilletter + " billetter til " + slcForestilling.value + ". </p>";
+
+	if (antBarn == 0 ) { // kommentar
+	txtBekreft.innerHTML += "Forestillingen er valgt for " + antVoks + " voksne. ";
+	} else if (antVoks == 0 ) { // kommentar
+	txtBekreft.innerHTML += "Forestillingen er valgt for " + antBarn + " barn. ";
+	} else {
+	txtBekreft.innerHTML += "Forestillingen er valgt for " + antVoks + " voksne, og " + antBarn + " barn. ";
+	}
+
+	if (antBilletter < 5 ) { // kommentar
+	txtBekreft.innerHTML += "Totalprisen er kr " + pris + ".";
+	} else {
+	pris = pris*0.8;
+	txtBekreft.innerHTML += "Totalprisen er kr " + pris + ", inklusive grupperabbatt på 20 prosent.";
+	}
+
+
+}
+// løsningen får opp f.eks 0 barn i utskriften. Dette skulle vært borte ifølge oppgaven.
+</script>
+</body>
+</html>

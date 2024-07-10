@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id='utskrift'> </p>
+
+    <script type="text/javascript">
+
+    var utskrift = document.getElementById("utskrift");
+
+    var navn = prompt("Hei, hva heter du?");
+    var farge = prompt("Hva er favoritt fargen din?");
+
+    utskrift.innerHTML = 'Hei, ' + navn + ', ' + 'liker du ' + farge.toLowerCase() + '-farge du?';
+
+    </script>
+
+  </body>
+</html>

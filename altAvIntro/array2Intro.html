@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+
+      var talliste = [];
+
+      talliste.push(3);   //legger til 3 i arrayen
+      talliste.push(4);
+      talliste.push(6);
+      talliste.push(1);
+      //var tall = talliste.pop();   //talliste.pop(); fjerner siste elementet i arrayen
+
+      var talliste2 = [];
+
+      for (var i = 0; i < talliste.length; i++) {
+        if (talliste[i] > 3) {
+          talliste2.push(talliste[i]);
+        }
+      }
+
+      utskrift.innerHTML = talliste2;
+
+
+
+    </script>
+  </body>
+</html>

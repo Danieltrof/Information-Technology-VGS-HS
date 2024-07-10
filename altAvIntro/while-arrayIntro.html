@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+
+      var handleliste = ['Melk', 'Cola', 'Brød', 'Potetgull', 'Vann'];
+
+      var i = 0; // i er teller
+      var sok = 'Vann';
+      var funnet = false;
+        while (i < handleliste.length) {
+/*
+          if (i != handleliste.length-1) {
+            utskrift.innerHTML += handleliste[i] + ', '
+        }
+          else {
+            utskrift.innerHTML += handleliste [i];
+        }
+*/
+    if (handleliste[i] == sok) {
+      utskrift.innerHTML = sok + ' finnes i handlelisten';
+      funnet = true;
+  }
+    //utskrift.innerHTML += handleliste[i] + ', ';
+    i++;
+}
+
+    if (funnet == false) {
+      utskrift.innerHTML = sok + ' finnes ikke i handlelisten';
+    }
+
+
+    </script>
+
+  </body>
+</html>

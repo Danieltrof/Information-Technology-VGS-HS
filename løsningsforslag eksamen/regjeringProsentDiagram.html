@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta name="author" content="delmatte.no">
+	<title>Oppgave 2b</title>
+</head>
+<body>
+<h1>Oppgave 2b</h1>
+<p id="test"></p>
+
+<script>
+var data = [
+        {
+            navn: "Rødt", // 0
+            prosent: 3.7
+           },
+        {
+            navn: "SV", // 1
+            prosent: 5.0
+           },
+		{
+            navn: "Ap", // 2
+            prosent: 23.0
+           },
+        {
+            navn: "SP", // 3
+            prosent: 4.2
+           },
+        {
+            navn: "MDG", // 4
+            prosent: 3.8
+           },
+        {
+            navn: "KRF", // 5
+            prosent: 2.8
+           },
+        {
+            navn: "V", // 6
+            prosent: 6.7
+           },
+		{
+            navn: "H", // 7
+            prosent: 28.2
+           },
+        {
+            navn: "FrP", // 8
+            prosent: 15.6
+           },
+        {
+            navn: "PIR", // 9
+            prosent: 4.3
+           }
+    ];
+
+	var RG = data[1].prosent + data[2].prosent + data[3].prosent;
+	var borgerlig = data[5].prosent+ data[6].prosent + data[7].prosent + data[8].prosent;
+
+
+    var html = "<p>Borgerlig blokk: " + borgerlig.toFixed(1) + " %</p>";
+    html += "<div style='background: blue; height: 30px; width: " + borgerlig + "px'></div>";
+    html += "<p>Rød grønn blokk: " + RG.toFixed(1) + " %</p>";
+    html += "<div style='background: red; height: 30px; width: " + RG + "px'></div>";
+
+    if (RG > borgerlig) {
+		var differanse = RG - borgerlig;
+		html += "<p>Rødgrønn side leder med " + differanse + " prosentpoeng. </p>";
+        html += "<p>Det er mest sannsynlig at vi får en rødgrønn regjering.</p>";
+    }
+    else if (borgerlig > RG) {
+		var differanse1 = borgerlig - RG;
+		html += "<p>Borgerlig side leder med " + differanse1 + " prosentpoeng. </p>";
+        html += "<p>Det er mest sannsynlig at vi får en borgerlig regjering.</p>";
+    }
+    else {
+        html += "<p>Ingen av blokkene har flertall.</p>";
+		html += "<p>Det er vanskelig å si hvem som vinner valget.</p>";
+    }
+
+    document.getElementById("test").innerHTML = html;
+</script>
+</body>
+</html>

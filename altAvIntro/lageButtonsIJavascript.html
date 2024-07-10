@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style type="text/css">
+
+    #storboks {
+      width: 500px;
+      height: 500px;
+    }
+
+    .knapper {
+      width: 50px;
+      height: 40px;
+      float:left;
+    }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div id="storboks"></div>
+
+    <p id="paragraf"></p>
+
+    <script type="text/javascript">
+
+    var storboks = document.getElementById('storboks');
+    var paragraf = document.getElementById('paragraf');
+
+    var str = ''
+
+    /*
+    for (var i = 1; i <= 10; i++) {
+        str += '<button onclick="klikket(' + i + ')">Knapp ' + i + ' </button>'
+    }
+    */
+
+    for (var i = 1; i <= 10; i++) {
+      for (var j = 1; j <= 10; j++) {
+        str += '<div id="boks' + i + j + '" class="knapper" onclick="gangeSammen(' + i + ',' + j + ')">' + i + '*' + j + '</div>';
+      }
+    }
+
+    storboks.innerHTML = str;
+
+    function klikket(nummer) {
+      paragraf.innerHTML = 'Du klikket på knapp nummer ' + nummer;
+    }
+
+    function gangeSammen(tall1,tall2) {
+      paragraf.innerHTML = tall1 + ' * ' + tall2 + ' = ' + Number(tall1*tall2);
+      document.getElementById('boks' + tall1 + tall2).innerHTML = 'klikket';
+    }
+
+
+
+
+    </script>
+
+  </body>
+</html>

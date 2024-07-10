@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h2>Klikk på en knapp</h2>
+
+    <input type="radio" name="rbgTekst" id="rbStor" value="Store Bokstaver">
+    Store bokstaver
+    <input type="radio" name="rbgTekst" id="rbLiten" value="Små Bokstaver">
+    Små bokstaver
+    <input type="radio" name="rbgTekst" id="rbIngen" value="Ingenting">
+    Gjør ingenting
+
+    <input type="checkbox" id="rommedressing">
+    Rømmedressing
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var rbStor = document.getElementById('rbStor');
+      var rbLiten = document.getElementById('rbLiten');
+      var rbIngen = document.getElementById('rbIngen');
+      var utskrift = document.getElementById('utskrift');
+      var rommedressing = document.getElementById('rommedressing');
+
+      var melding = "Hei og hopp. Dette var en fin dag!";
+
+      function sjekkTekst() {
+        if (rbStor.checked) { //trenger ikke == true, den sjekker allerede dette
+          utskrift.innerHTML = melding.toUpperCase();
+        }
+        else if (rbLiten.checked) {
+          utskrift.innerHTML = melding.toLowerCase();
+        }
+        else {
+          utskrift.innerHTML = melding;
+        }
+        if (rommedressing.checked) {
+          utskrift.innerHTML += "Du har valgt rømmedressing";
+        }
+      }
+
+      rbStor.onclick = sjekkTekst;
+      rbLiten.onclick = sjekkTekst;
+      rbIngen.onclick = sjekkTekst;
+
+
+
+    </script>
+
+  </body>
+</html>

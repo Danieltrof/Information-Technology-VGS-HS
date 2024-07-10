@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style>
+    body{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+
+    <br>
+    <h1>Museum's Aktiviteter</h1>
+
+    <select id="arrangementer">
+      <option>Velg et arrangement</option>
+    </select>
+    <input type="number" min="0" id="voksenFelt" placeholder="Antall voksne">
+    <input type="number" min="0" id="barneFelt" placeholder="Antall barn">
+    <button id="knapp">Bestill biletter</button>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var arrangementer = document.getElementById("arrangementer");
+      var voksenFelt = document.getElementById('voksenFelt');
+      var barneFelt = document.getElementById('barneFelt');
+      var knapp = document.getElementById('knapp');
+      var utskrift = document.getElementById("utskrift");
+
+      var trondheim = {
+        name: "Trondheim kammermusikkfestival: Fabelaktig formiddag"
+      }
+
+      var spillOpp = {
+        name: "Spill opp!"
+      }
+
+      var onsdag = {
+        name: "Onsdagskonsert"
+      }
+
+      var juiogat = {
+        name: "Juiogat: Joik for folk"
+      }
+
+
+      var arrangementArray = [trondheim, spillOpp, onsdag, juiogat]
+      var str = "";
+
+      for (var i = 0; i < arrangementArray.length; i++) {
+        str += '<option>' + arrangementArray[i].name + "</option>"
+      }
+      arrangementer.innerHTML += str
+
+      utskrift.innerHTML += "Pris voksen: 100 kr" + "<br> Pris barn: 50 kr <br>"
+      + "<br> Dersom du kjøper 5 eller flere biletter får du 20% rabatt!";
+
+      var valgtArrengement;
+
+      knapp.onclick = function() {
+        valgtArrengement = arrangementer.selectedIndex - 1;
+        var voksenBiletter = Number(voksenFelt.value);
+        var barneBiletter = Number(barneFelt.value);
+        var antallBiletter = voksenBiletter + barneBiletter
+
+        if (voksenBiletter==1 && barneBiletter>1) {
+          utskrift.innerHTML += '<br><br>Du har bestilt ' + antallBiletter +
+            ' biletter til ' + arrangementArray[valgtArrengement].name + ', ' +
+            voksenBiletter + ' voksen bilett og ' + barneBiletter +
+            ' barne biletter. Totalprisen er kr ' +
+            totalPris(voksenBiletter,barneBiletter,antallBiletter)
+        }
+        else if (voksenBiletter>1 && barneBiletter==1) {
+          utskrift.innerHTML += '<br><br>Du har bestilt ' + antallBiletter +
+            ' biletter til ' + arrangementArray[valgtArrengement].name + ', ' +
+            voksenBiletter + ' voksen biletter og ' + barneBiletter +
+            ' barne bilett. Totalprisen er kr ' +
+            totalPris(voksenBiletter,barneBiletter,antallBiletter)
+        }
+        else if (voksenBiletter>0 && barneBiletter>0) {
+          utskrift.innerHTML += '<br><br>Du har bestilt ' + antallBiletter +
+            ' biletter til ' + arrangementArray[valgtArrengement].name + ', ' +
+            voksenBiletter + ' voksen biletter og ' + barneBiletter +
+            ' barne biletter. Totalprisen er kr ' +
+            totalPris(voksenBiletter,barneBiletter,antallBiletter)
+        }
+        else if (voksenBiletter==1 && barneBiletter==0) {
+          utskrift.innerHTML += '<br><br>Du har bestilt ' + voksenBiletter +
+            ' voksen bilett til ' + arrangementArray[valgtArrengement].name +
+            '. Totalprisen er kr ' +
+            totalPris(voksenBiletter,barneBiletter,antallBiletter)
+        }
+        else if (barneBiletter==1 && voksenBiletter==0) {
+          utskrift.innerHTML += '<br><br>Du har bestilt ' + barneBiletter +
+            ' barne bilett til ' + arrangementArray[valgtArrengement].name +
+            '. Totalprisen er kr ' +
+            totalPris(voksenBiletter,barneBiletter,antallBiletter)
+        }
+        else if (voksenBiletter>0 && barneBiletter==0) {
+          utskrift.innerHTML += '<br><br>Du har bestilt ' + voksenBiletter +
+            ' voksen biletter til ' + arrangementArray[valgtArrengement].name +
+            '. Totalprisen er kr ' +
+            totalPris(voksenBiletter,barneBiletter,antallBiletter)
+        }
+        else if (barneBiletter>0 && voksenBiletter==0) {
+          utskrift.innerHTML += '<br><br> Du har bestilt ' + barneBiletter +
+            ' barne biletter til ' + arrangementArray[valgtArrengement].name +
+            '. Totalprisen er kr ' +
+            totalPris(voksenBiletter,barneBiletter,antallBiletter)
+        }
+        if (antallBiletter>4) {
+          utskrift.innerHTML += ", inklusiv grupperabatt på 20 prosent."
+        }
+      }
+
+        function totalPris(voksenBiletter,barneBiletter,antallBiletter) {
+          var voksenBilett = 100*voksenBiletter;
+          var barneBilett = 50*barneBiletter;
+          if (antallBiletter<5) {
+            var totalpris = voksenBilett+barneBilett
+          }
+          else if (antallBiletter>4) {
+            var totalpris = (voksenBilett+barneBilett) -
+              ((voksenBilett+barneBilett)*0.2)
+          }
+          return totalpris;
+        }
+
+    </script>
+
+  </body>
+</html>

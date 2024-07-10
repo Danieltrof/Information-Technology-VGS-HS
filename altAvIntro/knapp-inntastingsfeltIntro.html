@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift">Tast inn høyde og bredde til trekanten din</p>
+    <input type="number" id="felt1">
+    <input type="number" id="felt2">
+    <button id="knapp">Bekreft</button>
+
+
+    <script type="text/javascript">
+
+    var felt1 = document.getElementById('felt1');
+    var felt2 = document.getElementById('felt2');
+    var knapp = document.getElementById('knapp');
+    var utskrift = document.getElementById('utskrift');
+
+    knapp.onclick = function() {
+      var hoyde = Number(felt1.value);
+      var bredde = Number(felt2.value);
+      utskrift.innerHTML = 'Arealet til en trekant som har bredde ' + bredde + ' og høyde ' + hoyde + ' er: ' +
+      arealTrekant(hoyde,bredde);
+    }
+
+    function arealTrekant(h,b) {
+      var areal = h*b/2;
+      return areal;
+    }
+
+
+    </script>
+
+  </body>
+</html>

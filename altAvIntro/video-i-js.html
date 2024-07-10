@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <video src="Videofiler/atmos.mp4" id="film" controls></video>
+
+    <button id="play">Play</button>
+    <button id="pause">Pause</button>
+    <button id="dobbel">2x</button>
+    <button id="halv">0.5x</button>
+
+    <script type="text/javascript">
+
+      var film = document.getElementById('film');
+      var play = document.getElementById('play');
+      var pause = document.getElementById('pause');
+      var dobbel = document.getElementById('dobbel');
+      var halv = document.getElementById('halv');
+
+      film.currentTime = 15; //filmen starter på 15 sekunder.
+
+      play.onclick = function(){
+        film.play();
+      }
+
+      pause.onclick = function(){
+        film.pause();
+      }
+
+      dobbel.onclick = function(){
+        film.playbackRate = 2;
+      }
+
+      halv.onclick = function(){
+        film.playbackRate = 0.5;
+      }
+
+  /*    film.ontimeupdate = function () {
+        console.log(film.currentTime)
+        if (film.currentTime > 30 && film.currentTime < 30.9) {
+          film.pause();
+          film.currentTime = 30.9;
+        }
+      }
+      */
+
+    </script>
+
+  </body>
+</html>

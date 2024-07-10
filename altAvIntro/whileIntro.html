@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+
+      var teller = 0
+      var sluttverdi = 10;
+
+      while (teller < sluttverdi) {
+        if (teller == 5 || teller ==7) {
+          utskrift.innerHTML += 'Verdien til teller: ' + teller + '<br>';
+      }
+        teller ++;
+    }
+
+      utskrift.innerHTML += 'Nå er løkken ferdig, og teller har verdi: ' + teller;
+
+
+
+    </script>
+
+  </body>
+</html>

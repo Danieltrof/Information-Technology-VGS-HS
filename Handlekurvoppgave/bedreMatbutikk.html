@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style type="text/css">
+
+    #varerDiv {
+      width: 80%;
+      height: 900px;
+      float: left;
+    }
+
+    #handlekurvDiv {
+      width: 20%;
+      height: 900px;
+      float: left;
+    }
+
+    .nyVare {
+      float:left;
+      width: 15%;
+      height: 30%;
+      padding: 1%;
+      border: 2px solid black;
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div id="varerDiv"></div>
+    <div id="handlekurvDiv">
+      <p id="handlekurvP">Handlekurven din er tom</p>
+    </div>
+
+    <script type="text/javascript">
+
+      var varerDiv = document.getElementById('varerDiv');
+      var handlekurvP = document.getElementById('handlekurvP');
+
+      var gulrot = {
+        navn: "Gulrot",
+        pris: 5.3,
+        bilde: "Handlekurvoppgave/filer/mat/mat_19.png",
+        handlekurv: 0
+      }
+
+      var rodlok = {
+        navn: "Rødløk",
+        pris: 2.7,
+        bilde: "Handlekurvoppgave/filer/mat/mat_01.png",
+        handlekurv: 0
+      }
+
+      var agurk = {
+        navn: "Agurk",
+        pris: 15.9,
+        bilde: "Handlekurvoppgave/filer/mat/mat_14.png",
+        handlekurv: 0
+      }
+
+      var sopp = {
+        navn: "Sopp",
+        pris: 7.5,
+        bilde: "Handlekurvoppgave/filer/mat/mat_16.png",
+        handlekurv: 0
+      }
+
+      var paprika = {
+        navn: "Paprika",
+        pris: 12.4,
+        bilde: "Handlekurvoppgave/filer/mat/mat_05.png",
+        handlekurv: 0
+      }
+
+      var tomat = {
+        navn: "Tomat",
+        pris: 6.7,
+        bilde: "Handlekurvoppgave/filer/mat/mat_08.png",
+        handlekurv: 0
+      }
+
+      var varer = [gulrot, rodlok, agurk, sopp, paprika, tomat]
+
+      var str = '';
+
+      for (var i = 0; i < varer.length; i++) {
+        var divStart = '<div class="nyVare">'
+        var bilde = '<img src=" ' + varer[i].bilde + '">'
+        var paragraf = '<p>' + varer[i].navn + ' ' + varer[i].pris.toFixed(2) +
+          ' kr</p>'
+        var leggTilKnapp = '<button onclick="leggTil(' + i + ')">Legg til</button>'
+        var divSlutt = '</div>'
+        str += divStart + bilde + paragraf + leggTilKnapp + divSlutt;
+      }
+
+      varerDiv.innerHTML = str;
+
+      function leggTil(i) {
+        varer[i].handlekurv++;
+        printHandlekurv();
+      }
+
+      function fjernVare(i) {
+        varer[i].handlekurv--;
+        printHandlekurv();
+      }
+
+      function printHandlekurv() {
+        var sum = 0;
+        handlekurvP.innerHTML = '<h1>Handlekurv:</h1>'
+        for (var i = 0; i < varer.length; i++) {
+          if (varer[i].handlekurv > 0) {
+            handlekurvP.innerHTML += '<button onclick="leggTil(' + i + ')">+</button>'
+            handlekurvP.innerHTML += varer[i].handlekurv
+            handlekurvP.innerHTML +='<button onclick="fjernVare(' + i + ')">-</button>'
+            handlekurvP.innerHTML += " x " + varer[i].navn +
+              " (" + (varer[i].handlekurv*varer[i].pris).toFixed(2) + " kr)<br>";
+            sum += Number((varer[i].handlekurv*varer[i].pris).toFixed(2));
+          }
+        }
+        handlekurvP.innerHTML += '---------------------------<br> Sum: ' + sum.toFixed(2) + ' kr';
+      }
+
+    </script>
+
+  </body>
+</html>

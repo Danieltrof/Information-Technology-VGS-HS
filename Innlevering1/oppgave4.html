@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <canvas id="canvas" width="400" height="400"></canvas>
+
+    <script type="text/javascript">
+
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+
+      var start = 0
+      var stopp = 2*Math.PI;
+
+      ctx.fillStyle = 'blue';
+      ctx.arc(200,200,200,start,stopp)
+      ctx.fill();
+
+      ctx.fillStyle = 'white';
+      ctx.fillRect(95,160,210,65);
+
+      ctx.fillStyle = 'white';
+      ctx.fillRect(165,90,65,210);
+
+
+    </script>
+
+  </body>
+</html>

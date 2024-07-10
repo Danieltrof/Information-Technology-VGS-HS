@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h2>Skattekalkulator</h2>
+
+    <input type="checkbox" id="fylke">
+    Bor du i Finnmark eller Nord-Troms?
+    <br><input type="number" id="felt1" placeholder="Tast inn inntekten din">
+    <br><input type="number" id="felt2" placeholder="Tast inn formuen din">
+    <br><button id="button">Bekreft</button>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var fylke = document.getElementById('fylke');
+      var felt1 = document.getElementById('felt1');
+      var felt2 = document.getElementById('felt2');
+      var button = document.getElementById('button');
+      var utskrift = document.getElementById('utskrift')
+
+    button.onclick = function() {
+        var inntekt = Number(felt1.value);
+        var formue = Number(felt2.value);
+        var trygdeavgift = 0.082;
+
+        var formueavgiftKommune = 0.007;
+        var formueavgiftStaten = 0.0015;
+        var formueskattKommune = formue*formueavgiftKommune
+        var formueskattStaten = formue*formueavgiftStaten
+
+        var frikort = 94750;
+        var inntektsSkattKommune = inntekt*0.1155;
+        var inntektsSkattFylkekommune = inntekt*0.026;
+
+        var over964800 = (inntekt-964800)*0.168;
+        var over617500 = (inntekt-617500)*0.132;
+        var over245650 = (inntekt-245650)*0.042;
+        var over174500 = (inntekt-174500)*0.019;
+
+        if (fylke.checked) {
+          var inntektsSkattStaten = inntekt*0.0435;
+        }
+        else {
+          var inntektsSkattStaten = inntekt*0.0785;
+        }
+
+        utskrift.innerHTML += "Trygdeavgiften din er på NOK:" + Trygdeavgift(inntekt,trygdeavgift);
+        utskrift.innerHTML += "<br><br>Formueskatten din er på NOK:" + Formueskatt(formue,formueavgiftKommune,formueavgiftStaten) +
+         ", hvorav NOK:" + formueskattKommune + " går til kommunen og NOK:" + formueskattStaten +
+         " går til Staten.";
+        utskrift.innerHTML += "<br><br>Din inntektsskatt er på NOK:" +
+        Inntektsskatt(inntekt,frikort,inntektsSkattKommune,inntektsSkattFylkekommune,inntektsSkattStaten)
+        + ", hvorav NOK:" + inntektsSkattKommune + " går til kommunen, NOK:" + inntektsSkattFylkekommune + " går til fylkeskommunen"
+        + " og NOK:" + inntektsSkattStaten + " til staten.";
+
+
+      function Trygdeavgift(i,t) {
+        var dinTrygdeavgift = i*t;
+        return dinTrygdeavgift;
+      }
+
+      function Formueskatt(f,k,s) {
+        if (formue >= 1500000) {
+          var dinFormueskatt = formueskattKommune+formueskattStaten;
+        }
+        else {
+          var dinFormueskatt = 0;
+        }
+        return dinFormueskatt;
+      }
+
+      function Inntektsskatt(i,k,f,s) {
+        if (inntekt <= frikort) {
+          var dinInntektsSkatt = 0;
+        }
+        else if (inntekt > frikort) {
+          var dinInntektsSkatt = inntektsSkattKommune+inntektsSkattFylkekommune+inntektsSkattStaten;
+        }
+        return dinInntektsSkatt;
+      }
+
+
+    }
+
+
+
+
+
+    </script>
+
+  </body>
+</html>

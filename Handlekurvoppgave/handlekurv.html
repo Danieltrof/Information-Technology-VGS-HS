@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Trofi nettbutikk</title>
+    <style>
+      h1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      h3{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      h4{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      div{
+        margin: 0px;
+        padding: 0px;
+        display: block;
+        flex-direction: row;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Trofi</h1>
+    <h3>Hvorfor Trofi?</h3>
+    <h4>Trofi er en dedikert butikk som selger ferske grønnsaker.</h4><br>
+
+    <div class="Gulrot">
+      <p id="gulrotBio"></p>
+      <img src="Filer/mat/mat_19.png" alt="Gulrot" width="200" id="gulrotBilde">
+      <button id="gulrotKnapp">Legg Til</button>
+      <button id="fjernGulrot">Fjern</button>
+    </div>
+
+    <div class="Tomat">
+      <p id="tomatBio"></p>
+      <img src="Filer/mat/mat_08.png" alt="Tomat" width="200" id="tomatBilde">
+      <button id="tomatKnapp">Legg Til</button>
+      <button id="fjernTomat">Fjern</button>
+    </div>
+
+    <div class="Paprika">
+      <p id="paprikaBio"></p>
+      <img src="Filer/mat/mat_05.png" alt="Paprika" width="200" id="paprikaBilde">
+      <button id="paprikaKnapp">Legg Til</button>
+      <button id="fjernPaprika">Fjern</button><br>
+    </div>
+
+    <div class="Brokolli">
+      <p id="brokolliBio"></p>
+      <img src="Filer/mat/mat_02.png" alt="Brokolli" width="200" id="brokolliBilde">
+      <button id="brokolliKnapp">Legg Til</button>
+      <button id="fjernBrokolli">Fjern</button>
+    </div>
+
+    <div class="Sopp">
+      <p id="soppBio"></p>
+      <img src="Filer/mat/mat_16.png" alt="Sopp" width="200" id="soppBilde">
+      <button id="soppKnapp">Legg Til</button>
+      <button id="fjernSopp">Fjern</button>
+    </div>
+
+    <div class="Agurk">
+      <p id="agurkBio"></p>
+      <img src="Filer/mat/mat_14.png" alt="Agurk" width="200" id="agurkBilde">
+      <button id="agurkKnapp">Legg Til</button>
+      <button id="fjernAgurk">Fjern</button><br>
+    </div>
+
+    <br><p id="handlekurvOverskrift"></p>
+    <br><p id="gulrotUtskrift"></p>
+    <p id="tomatUtskrift"></p>
+    <p id="paprikaUtskrift"></p>
+    <p id="brokolliUtskrift"></p>
+    <p id="soppUtskrift"></p>
+    <p id="agurkUtskrift"></p>
+
+    <button id="totalPrisKnapp">Total Pris</button>
+    <p id="totalPrisUtskrift"></p>
+
+    <script type="text/javascript">
+
+      var handlekurvOverskrift = document.getElementById('handlekurvOverskrift');
+
+      var gulrotBilde = document.getElementById('gulrotBilde');
+      var gulrotBio = document.getElementById('gulrotBio');
+      var gulrotKnapp = document.getElementById('gulrotKnapp');
+      var fjernGulrot = document.getElementById('fjernGulrot');
+      var gulrotUtskrift = document.getElementById('gulrotUtskrift');
+
+      var tomatBilde = document.getElementById('tomatBilde');
+      var tomatBio = document.getElementById('tomatBio');
+      var tomatKnapp = document.getElementById('tomatKnapp');
+      var fjernTomat = document.getElementById('fjernTomat');
+      var tomatUtskrift = document.getElementById('tomatUtskrift');
+
+      var paprikaBilde = document.getElementById('paprikaBilde');
+      var tomatBio = document.getElementById('tomatBio');
+      var paprikaKnapp = document.getElementById('paprikaKnapp');
+      var fjernPaprika = document.getElementById('fjernPaprika');
+      var paprikaUtskrift = document.getElementById('paprikaUtskrift');
+
+      var brokolliBilde = document.getElementById('brokolliBilde');
+      var brokolliBio = document.getElementById('brokolliBio');
+      var brokolliKnapp = document.getElementById('brokolliKnapp');
+      var fjernBrokolli = document.getElementById('fjernBrokolli');
+      var brokolliUtskrift = document.getElementById('brokolliUtskrift');
+
+      var soppBilde = document.getElementById('soppBilde');
+      var soppBio = document.getElementById('soppBio');
+      var soppKnapp = document.getElementById('soppKnapp');
+      var fjernSopp = document.getElementById('fjernSopp');
+      var soppUtskrift = document.getElementById('soppUtskrift');
+
+      var agurkBilde = document.getElementById('agurkBilde');
+      var agurkBio = document.getElementById('agurkBio');
+      var agurkKnapp = document.getElementById('agurkKnapp');
+      var fjernAgurk = document.getElementById('fjernAgurk');
+      var agurkUtskrift = document.getElementById('agurkUtskrift');
+
+      var totalPrisKnapp = document.getElementById('totalPrisKnapp');
+      var totalPrisUtskrift = document.getElementById('totalPrisUtskrift');
+
+      var gulrot = {
+        navn: 'Gulrot',
+        pris: 14.9,
+        antall: 0
+      }
+
+      var tomat = {
+        navn: 'Tomat',
+        pris: 13.5,
+        antall: 0
+      }
+
+      var paprika = {
+        navn: 'Paprika',
+        pris: 11.9,
+        antall: 0
+      }
+
+      var brokolli = {
+        navn: 'Brokolli',
+        pris: 17.5,
+        antall: 0
+      }
+
+      var sopp = {
+        navn: 'Sopp',
+        pris: 12.9,
+        antall: 0
+      }
+
+      var agurk = {
+        navn: 'Agurk',
+        pris: 15.5,
+        antall: 0
+      }
+
+      gulrotBio.innerHTML = "Kun " + gulrot.pris + " kr. per " + gulrot.navn + "!";
+      tomatBio.innerHTML = "Kun " + tomat.pris + " kr. per " + tomat.navn + "!";
+      paprikaBio.innerHTML = "Kun " + paprika.pris + " kr. per " + paprika.navn + "!";
+      brokolliBio.innerHTML = "Kun " + brokolli.pris + " kr. per " + brokolli.navn + "!";
+      soppBio.innerHTML = "Kun " + sopp.pris + " kr. per " + sopp.navn + "!";
+      agurkBio.innerHTML = "Kun " + agurk.pris + " kr. per " + agurk.navn + "!";
+
+      handlekurvOverskrift.innerHTML += "Din handlekurv:";
+
+      gulrotKnapp.onclick = function() {
+        gulrot.antall ++;
+        if (gulrot.antall > 0) {
+          gulrotUtskrift.innerHTML = gulrot.antall + "x Gulrot (" + (gulrot.pris*gulrot.antall) + " kr)";
+        }
+      }
+      fjernGulrot.onclick = function() {
+        if (gulrot.antall > 0) {
+          gulrot.antall --;
+        }
+        if (gulrot.antall > 0) {
+          gulrotUtskrift.innerHTML = gulrot.antall + "x Gulrot (" + (gulrot.pris*gulrot.antall) + " kr)";
+        }
+        else if (gulrot.antall == 0) {
+          gulrotUtskrift.innerHTML = "";
+        }
+      }
+
+      tomatKnapp.onclick = function() {
+        tomat.antall ++;
+        if (tomat.antall > 0) {
+          tomatUtskrift.innerHTML = tomat.antall + "x Tomat (" + (tomat.pris*tomat.antall) + " kr)";
+        }
+      }
+      fjernTomat.onclick = function() {
+        if (tomat.antall > 0) {
+          tomat.antall --;
+        }
+        if (tomat.antall > 0) {
+          tomatUtskrift.innerHTML = tomat.antall + "x Tomat (" + (tomat.pris*tomat.antall) + " kr)";
+        }
+        else if (tomat.antall == 0) {
+          tomatUtskrift.innerHTML = "";
+        }
+      }
+
+      paprikaKnapp.onclick = function() {
+        paprika.antall ++;
+        if (paprika.antall > 0) {
+          paprikaUtskrift.innerHTML = paprika.antall + "x Paprika (" + (paprika.pris*paprika.antall) + " kr)";
+        }
+      }
+
+      fjernPaprika.onclick = function() {
+        if (paprika.antall > 0) {
+          paprika.antall --;
+        }
+        if (paprika.antall > 0) {
+          paprikaUtskrift.innerHTML = paprika.antall + "x Paprika (" + (paprika.pris*paprika.antall) + " kr)";
+        }
+        else if (paprika.antall == 0) {
+          paprikaUtskrift.innerHTML = "";
+        }
+      }
+
+      brokolliKnapp.onclick = function() {
+        brokolli.antall ++;
+        if (brokolli.antall > 0) {
+          brokolliUtskrift.innerHTML = brokolli.antall + "x Brokolli (" + (brokolli.pris*brokolli.antall) + " kr)";
+        }
+      }
+      fjernBrokolli.onclick = function() {
+        if (brokolli.antall > 0) {
+          brokolli.antall --;
+        }
+        if (brokolli.antall > 0) {
+          brokolliUtskrift.innerHTML = brokolli.antall + "x Brokolli (" + (brokolli.pris*brokolli.antall) + " kr)";
+        }
+        else if (brokolli.antall == 0) {
+          brokolliUtskrift.innerHTML = "";
+        }
+      }
+
+      soppKnapp.onclick = function() {
+        sopp.antall ++;
+        if (sopp.antall > 0) {
+          soppUtskrift.innerHTML = sopp.antall + "x Sopp (" + (sopp.pris*sopp.antall) + " kr)";
+        }
+      }
+      fjernSopp.onclick = function() {
+        if (sopp.antall > 0) {
+          sopp.antall --;
+        }
+        if (sopp.antall > 0) {
+          soppUtskrift.innerHTML = sopp.antall + "x Sopp (" + (sopp.pris*sopp.antall) + " kr)";
+        }
+        else if (sopp.antall == 0) {
+          soppUtskrift.innerHTML = "";
+        }
+      }
+
+      agurkKnapp.onclick = function() {
+        agurk.antall ++;
+        if (agurk.antall > 0) {
+          agurkUtskrift.innerHTML = agurk.antall + "x Agurk (" + (agurk.pris*agurk.antall) + " kr)";
+        }
+      }
+      fjernAgurk.onclick = function() {
+        if (agurk.antall > 0) {
+          agurk.antall --;
+        }
+        if (agurk.antall > 0) {
+          agurkUtskrift.innerHTML = agurk.antall + "x Agurk (" + (agurk.pris*agurk.antall) + " kr)";
+        }
+        else if (agurk.antall == 0) {
+          agurkUtskrift.innerHTML = "";
+        }
+      }
+
+      totalPrisKnapp.onclick = function () {
+        totalPrisUtskrift.innerHTML = "Totalpris: " + Totalpris(gulrot.pris,
+          gulrot.antall,tomat.pris,tomat.antall,paprika.pris,paprika.antall,
+          brokolli.pris,brokolli.antall,sopp.pris,sopp.antall,agurk.pris,
+          agurk.antall) + " kr."
+      }
+
+      function Totalpris(gp,ga,tp,ta,pp,pa,bp,ba,sp,sa,ap,an) {
+        var totalPris = (gp*ga)+(tp*ta)+(pp*pa)+(bp*ba)+(sp*sa)+(ap*an)
+        return totalPris.toFixed(2);
+      }
+
+
+
+
+    </script>
+
+  </body>
+</html>

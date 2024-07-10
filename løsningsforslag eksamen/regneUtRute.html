@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta name="author" content="delmatte.no">
+	<title>Oppgave 2: Applikasjon for å beregne pris</title>
+</head>
+<body>
+    <h1>Oppgave 2: Applikasjon for å beregne pris</h1>
+    <img src="stortkartostfold.gif" style="float: left">
+
+	<p>Velg en rute:<select id = "dropdown" onchange = "loadquestions(this.value)"></select></p>
+
+	<div id = "div1"></div><br>
+	<div id = "div2"></div><br>
+	<div id = "div3"></div><br>
+	<div id = "div4"></div><br>
+	<div id = "div5"></div><br>
+	<div id = "pris"></div>
+
+<script>
+var muligeValg = {
+	"Kort rute": {
+		Askim:    {
+			"Saftpressekurs Askim saftpresseri, kr 190,-"   : 190
+		},
+		Fredrikstad: {
+			"Skattejakt i gamlebyen, kr 95,-"   : 95,
+			"Elvelangs Glomma, kr 65,-"			: 65,
+			"Minicruise på Glomma, kr 145,-"     : 145,
+		},
+		Moss: {
+			"Våler klatrepark, kr 195,-"   		: 195,
+			"Pilegrimsvegen, kr 60,-"			: 60,
+			"Minicruise på Glomma, kr 145,-"    : 145,
+		},
+	},
+	"Lang rute": {
+		Askim:    {
+			"Saftpressekurs Askim saftpresseri, kr 190,-"   : 190
+		},
+		Fredrikstad: {
+			"Skattejakt i gamlebyen, kr 95,-"   : 95,
+			"Elvelangs Glomma, kr 65,-"			: 65,
+			"Minicruise på Glomma, kr 145,-"    : 145,
+		},
+		Moss: {
+			"Våler klatrepark, kr 195,-"   		: 195,
+			"Pilegrimsvegen, kr 60,-"			: 60,
+			"Minicruise på Glomma, kr 145,-"    : 145,
+		},
+		Halden: {
+			"Spasertur langs Olavsleden, kr 150,-"   	: 150,
+			"Omvisning Rød Herregård, kr 95,-"			: 95,
+			"Tur med MS Strømfoss, kr 110,-"    		: 110,
+		},
+		Ørje: {
+			"Rammeverksted på galleri Lund, kr 120,-"   : 120,
+		},
+	}
+}
+
+//Denne funksjonen lager en dropdown meny ut fra arrayen over, hvor man kan velge kort eller lang rute.
+function createdropdown(){
+	var dropdown = document.getElementById("dropdown")
+
+	for (var i in muligeValg){
+        var option = document.createElement("option");
+
+		option.value = i
+		option.text  = i
+
+		dropdown.add(option)
+	}
+}
+
+var selected
+var totalprice //totalpris.
+
+
+//Denne funksjonen laster inn alle spørsmålene når man har valgt alternativ.
+function loadquestions(alternativ_meny){
+
+	// Setter totalprisen avhengig av turen vi har valgt.
+	if (document.getElementById("dropdown").value=="Kort rute"){
+		totalprice=3200;
+		document.getElementById("pris").innerHTML = "<h2>Totalpris: " + totalprice;
+	} else {
+		totalprice=7800;
+		document.getElementById("pris").innerHTML = "<h2>Totalpris: " + totalprice;
+	}
+
+	//Setter den globale variabelen selected, fordi den er relevant i andre funksjoner
+	selected = muligeValg[alternativ_meny]
+
+	var div1  = document.getElementById("div1")
+	//først må vi cleare spørsmålene som er der fra før av.
+	div1.innerHTML = "";
+
+	var div2  = document.getElementById("div2")
+	div2.innerHTML = "";
+
+	var div3  = document.getElementById("div3")
+	div3.innerHTML = "";
+
+	var div4  = document.getElementById("div4")
+	div4.innerHTML = "";
+
+	var div5  = document.getElementById("div5")
+	div5.innerHTML = "";
+
+	var DOMs = { //array over alle html divene som brukes i koden.
+	"Askim"  		: document.getElementById("div1"),
+	"Fredrikstad"   : document.getElementById("div2"),
+	"Moss"     		: document.getElementById("div3"),
+	"Halden"  		: document.getElementById("div4"),
+	"Ørje"   		: document.getElementById("div5")
+	}
+
+
+
+
+	function sup(arg){ //for å ikke gjenta kode.
+		var overskrift = document.createElement("B")
+		overskrift.innerHTML = arg //html
+		DOMs[arg].appendChild(overskrift)
+		for (var i in selected[arg]){ //går gjennom hver index i tabellen
+			var boks = document.createElement("INPUT") //oppretter input
+			boks.value    = selected[arg][i]
+			boks.type     = "checkbox"; //Alle er av typen "checkbox"
+			boks.onchange = calculateprice //kjører calculateprice når verdien endres
+			var name     = document.createElement("DIV")
+			name.innerHTML = i + " "
+			DOMs[arg].appendChild(name) //legg til i htmlen
+			name.appendChild(boks)
+
+		}
+	}
+	// Får valgalternativene inn i div1,div2,div3.
+	sup("Askim") //kjører funksjonen for alternativene i Askim, radiobutton siden vi må velge enten det ene, eller det andre.
+	sup("Fredrikstad") //kjører funksjonen for alternativene i Fredrikstad, checkbox siden vi kan velge flere av alternativene.
+	sup("Moss") //kjører funksjonen for alternativene i option3, checkbox siden vi kan velge flere av alternativene.
+
+	if (alternativ_meny=="Lang rute"){
+		sup("Halden")
+		sup("Ørje")
+		}
+	}
+
+window.onload = function(){
+	//Disse funksjonen kjører når vinduet lastes
+	createdropdown()
+	loadquestions("Kort rute")
+}
+
+//Finner prisen på det du har bestilt.
+function calculateprice(){
+	var pris = document.getElementById("pris")
+	var math //oppretter variabel
+	if (this.type=="checkbox"){ //hvis typen er en firkantet sjekkboks kan flere verdier være aktive samtidig
+		if (this.checked==true){ //hvis man aktiverer alternativet, legger den til
+			math = totalprice+"+"+this.value.toString()
+		}
+		else{ //hvis man deaktiverer alternativet, trekker den fra
+			math = totalprice+"-"+this.value.toString()
+		}
+	}
+	totalprice = eval(math.toString()) //beregner totalprisen
+	pris.innerHTML = "<h2>Totalpris: " + totalprice //viser totalprisen som tekst
+}
+
+</script>
+</body>
+</html>

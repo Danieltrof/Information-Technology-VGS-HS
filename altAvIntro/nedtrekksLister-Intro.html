@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <select id="skoler">
+      <option>Velg en skole </option>
+    </select>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+    var skoler = document.getElementById('skoler');
+    var utskrift = document.getElementById('utskrift');
+
+    var skoleArray = ["F21", "Valle", "Nissen", "Handels", "Kuben"] // istedenfor å skrive <option>Velg en skole</option> <option>F21</option><option>Valle</option><option>Nissen</option><option>Handels</option><option>Kuben</option>
+    var str = "";
+
+    for (var i = 0; i < skoleArray.length; i++) {
+      str += '<option>' + skoleArray[i] + "</option>"
+    }
+    skoler.innerHTML += str
+
+  //  utskrift.innerHTML = skoler[0].innerHTML;
+
+    skoler.onchange = function() {
+      var valgtIndeks = skoler.selectedIndex;
+      if (valgtIndeks == 0) {
+        utskrift.innerHTML = "Du må velge en av skolene";
+      }
+      else if (valgtIndeks == 1) {
+        utskrift.innerHTML = "Du har valgt den beste skolen, nemlig " +
+        skoleArray[valgtIndeks-1];
+      }
+      else {
+        utskrift.innerHTML = "Du har valgt " + valgtIndeks + ", som er " +
+        skoleArray[valgtIndeks-1] + ". Det var et dårlig valg";
+      }
+    }
+
+
+
+
+    </script>
+
+  </body>
+</html>

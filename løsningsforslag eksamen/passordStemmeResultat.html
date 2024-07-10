@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta name="author" content="delmatte.no">
+	<title>Oppgave 3</title>
+</head>
+<body>
+<div id="Div1">
+	<h1>Oppgave 3: Logg inn</h1>
+    <label for="inpPassord">Passord:</label>
+    <input id="inpPassord">
+    <button id="btnPassord" onclick="Logginn()">Logg inn</button>
+    <p id="txtPassord"></p>
+	<button id="btnResultat" onclick="visResultat()">Vis valgresultat</button>
+</div>
+
+<div id="Div2">
+	<h1>Oppgave 3: Velg parti</h1>
+    <select id="slcParti" size=10 onchange = "VistxtParti()";></select>
+    <p id="txtParti"></p>
+    <button id="bekreftStemme" onclick="avgiStemme()">Bekreft stemme</button>
+</div>
+
+<div id="Div3">
+<h1>Oppgave 3: Valgresultat 2017</h1>
+</div>
+
+
+
+
+<script>
+var slcParti = document.getElementById("slcParti");
+var btnPassord = document.getElementById("btnPassord");
+var gyldigePassord = ["Passord001", "Passord002", "Passord003", "Passord004", "Passord005", "Passord006", "Passord007", "Passord008", "Passord009", "Passord010"];
+var data = [
+        {
+            navn: "Rødt", // 0
+			stemmer: 0,
+            P2013: 3.7
+           },
+        {
+            navn: "SV", // 1
+            stemmer: 0,
+			P2013: 5.0
+           },
+		{
+            navn: "Ap", // 2
+            stemmer: 0,
+			P2013: 23.0
+           },
+        {
+            navn: "SP", // 3
+            stemmer: 0,
+			P2013: 4.2
+           },
+        {
+            navn: "MDG", // 4
+            stemmer: 0,
+			P2013: 3.8
+           },
+        {
+            navn: "KRF", // 5
+            stemmer: 0,
+			P2013: 2.8
+           },
+        {
+            navn: "V", // 6
+            stemmer: 0,
+			P2013: 6.7
+           },
+		{
+            navn: "H", // 7
+            stemmer: 0,
+			P2013: 28.2
+           },
+        {
+            navn: "FrP", // 8
+            stemmer: 0,
+			P2013: 15.6
+           },
+        {
+            navn: "PIR", // 9
+            stemmer: 0,
+			P2013: 4.3
+           }
+    ];
+
+//Fyller selectboksen med partiene.
+for (var i = 0; i < data.length; i++) {
+		var option = document.createElement("option");
+		option.text = data[i].navn;
+		option.value = data[i].navn;
+		slcParti.add(option)
+	}
+Div1.style.display = "initial"; //skjul Logginn delen
+Div2.style.display = "none"; //Vis valgdelen
+Div3.style.display = "none"; //Vis valgdelen
+
+function Logginn() {
+         var index = gyldigePassord.indexOf(inpPassord.value);
+
+		 if (index == -1) {
+		 document.getElementById("txtPassord").innerHTML = "Passordet er enten feil, eller allerede brukt";
+		} else {
+		gyldigePassord.splice(index, 1); //sletter passordet med plassering index. Sletter 1 element.
+		Div1.style.display = "none"; //skjul Logginn delen
+		Div2.style.display = "initial"; //Vis valgdelen
+		document.getElementById("txtPassord").innerHTML = " ";
+		}
+}
+
+
+
+function VistxtParti()	{
+	document.getElementById("txtParti").innerHTML = "Du har valgt: " + slcParti.value;
+	}
+
+function avgiStemme() {
+    var SlcIndex = slcParti.selectedIndex;
+	if(SlcIndex == -1) {
+		 alert("Velg et parti først");
+		} else {
+		data[SlcIndex].stemmer = data[SlcIndex].stemmer + 1;
+		Div2.style.display = "none"; //skjul valgdelen
+		Div1.style.display = "initial"; //Vis logginn delen
+		alert("Takk! Din stemme er registrert.")
+		}
+}
+
+function visResultat() {
+	Div3.style.display = "initial"; //Vis resultatdelen
+	var stemmerTOT = 0;
+	for (var i = 0; i < data.length; i++) {
+		stemmerTOT = stemmerTOT + data[i].stemmer;
+	}
+	for (var i = 0; i < data.length; i++) {
+		var partiProsent = data[i].stemmer/stemmerTOT*100;
+		var ppEndring = partiProsent - data[i].P2013;
+		Div3.innerHTML += "<p>" + data[i].navn + ": " + partiProsent.toFixed(1) + "%. Dette er en endring på: " + ppEndring.toFixed(1) + " prosentpoeng."  + "</p>";
+	}
+Div1.style.display = "none"; //skjul logginn delen
+Div2.style.display = "none"; //skjul valgdelen
+}
+
+
+</script>
+</body>
+</html>

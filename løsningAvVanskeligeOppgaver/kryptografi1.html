@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <input type="number" id="tallInp" placeholder="Et tall">
+    <input type="text" id="bokstavInp" placeholder="bokstaver">
+    <input type="number" id="forflytteInp" placeholder="Hvor mye vil du forflytte med">
+    <button id="knapp">Bekreft</button>
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById("utskrift");
+      var tallInp = document.getElementById("tallInp");
+      var bokstavInp = document.getElementById("bokstavInp");
+      var forflytteInp = document.getElementById("forflytteInp");
+      var knapp = document.getElementById('knapp');
+
+      var bokstaver = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n",
+        "o","p","q","r","s","t","u","v","w","x","y","z"," ",".","?"]
+
+      knapp.onclick = function () {
+        utskrift.innerHTML += "<br>" + tallTilBokstav(tallInp.value)
+        utskrift.innerHTML += "<br>" + bokstavTilTall(bokstavInp.value,bokstaver)
+        utskrift.innerHTML += "<br>" + forflytteArray()
+      }
+
+      function tallTilBokstav(tall) {
+        return bokstaver[tall]
+      }
+
+      function bokstavTilTall(bokstav,array) {
+        var funnet = false;
+        for (var i = 0; i < array.length; i++) {
+          if (array[i] == bokstav) {
+            funnet = true;
+            break;
+          }
+        }
+        return i;
+      }
+
+      function forflytteArray() {
+        var flytte = Number(forflytteInp.value)
+        var forflytte = bokstaver[bokstavTilTall(bokstavInp.value,bokstaver) +
+          flytte] + " " + bokstaver[bokstavTilTall(bokstavInp.value,bokstaver) +
+          1 + flytte] + " " + bokstaver[bokstavTilTall(bokstavInp.value,bokstaver)
+          + 2 + flytte];
+        return forflytte;
+      }
+
+      function stringTilBokstaverTilTall(bokstav,array) {
+        var str = bokstavInp.value;
+        str.split('');
+        var funnet = false;
+        for (var i = 0; i < bokstaver.length; i++) {
+          if (bokstaver[i] == bokstavInp.value) {
+            funnet = true;
+            break;
+          }
+        }
+        return i;
+      }
+
+    </script>
+
+  </body>
+</html>

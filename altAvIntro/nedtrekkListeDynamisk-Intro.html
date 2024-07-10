@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <select id="klubberSel"></select>
+
+    <select id="spillereSel"></select>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+    var klubberSel = document.getElementById('klubberSel')
+    var spillereSel = document.getElementById('spillereSel')
+    var utskrift = document.getElementById('utskrift')
+
+    var psg = {
+      navn: "PSG",
+      spillere: ["Neymar", "Messi", "Mbappe", "icardi"]
+    }
+
+    var atletico = {
+      navn: "Atletico Madrid",
+      spillere: ["Oblak", "Suarez", "Joao Felix"]
+    }
+
+    var chelsea = {
+      navn: "Chelsea",
+      spillere: ["Mount", "Lukaku", "Havertz"]
+    }
+
+    var klubbliste = [psg, atletico, chelsea];
+
+    var str = "<option>Velg en klubb</option>";
+
+    for (var i = 0; i < klubbliste.length; i++) {
+      str += "<option>" + klubbliste[i].navn + "</option>"
+    }
+
+    klubberSel.innerHTML = str;
+
+    var valgtKlubb;
+
+    klubberSel.onchange = function() {
+      valgtKlubb = klubberSel.selectedIndex - 1;
+      str = "<option>Velg en spiller</option>";
+      for (var i = 0; i < klubbliste[valgtKlubb].spillere.length; i++) {
+        str += "<option>" + klubbliste[valgtKlubb].spillere[i] + "</option>";
+      }
+      spillereSel.innerHTML = str;
+    }
+
+    spillereSel.onchange = function() {
+      var valgtSpiller = spillereSel.selectedIndex - 1;
+      utskrift.innerHTML = "Du har valgt " + klubbliste[valgtKlubb].spillere[valgtSpiller] +
+      ", som spiller for " + klubbliste[valgtKlubb].navn;
+    }
+
+
+
+    </script>
+
+  </body>
+</html>

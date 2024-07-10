@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<style type="text/css">
+		input, select, button {
+			margin-bottom: 10px;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div id="storboks">
+
+		<select id="filialmeny"></select>
+		<br>
+		<input type="date" id="bestdato">
+		<br>
+		<input type="text" id="bestnavn" placeholder="Navn">
+		<br>
+		<select id="tidsmeny"></select>
+		<br>
+		<select id="antallmeny">
+			<option>Velg antall gjester</option>
+		</select>
+		<br>
+		<input type="email" id="bestepost" placeholder="e-post">
+		<br>
+		<button id="bekreft">Bekreft</button>
+		<p id="melding"></p>
+
+	</div>
+
+	<script type="text/javascript">
+		
+		//Henter inn HTML-elementene
+		var filialmeny = document.getElementById('filialmeny');
+		var bestdato = document.getElementById('bestdato');
+		var bestnavn = document.getElementById('bestnavn');
+		var tidsmeny = document.getElementById('tidsmeny');
+		var antallmeny = document.getElementById('antallmeny');
+		var bestepost = document.getElementById('bestepost');
+		var bekreft = document.getElementById('bekreft');
+		var melding = document.getElementById('melding');
+		var valgtFilial = filialmeny.selectedIndex+1;
+		var intervall = 15; //15 min mellomrom mellom hver tid man kan velge
+		var nesteBestillingsID = 0;
+
+		//Opprettet et objekt for hver filial
+		var bislett = {
+			navn: 'Bislett',
+			bestillinger: [],
+			plasser: 50,
+			aapen: 1500,
+			steng: 2300
+		}
+
+		var majorstuen = {
+			navn: 'Majorstuen',
+			bestillinger: [],
+			plasser: 20,
+			aapen: 1600,
+			steng: 2330
+		}
+
+		var grunerlokka = {
+			navn: 'Grünerløkka',
+			bestillinger: [],
+			plasser: 50,
+			aapen: 1300,
+			steng: 2300
+		}
+
+		//Lager en array med oversikt over alle filialene
+		var filialer = [bislett, majorstuen, grunerlokka];
+		//Oppretter nedtrekksmeny for alle filialene. Dette kan også gjøres rett i HTML
+		for (filial of filialer) {
+			filialmeny.innerHTML += '<option>' + filial.navn + '</option>';
+		}
+
+		//Lager en funksjon som oppretter nedtrekksmeny for tidene man kan velge. Har valgt formatet hhmm som tall fordi det er lettere å regne med. 
+		function lagTidsmeny(filialnummer) {
+			tidsmeny.innerHTML = ''; //Tømmer nedtrekksmenyen
+			var filial = filialer[filialnummer];
+			var start = filial.aapen; //Åpningstid
+			var tider = [start]; //Alle mulige tider i en array
+			while (start < filial.steng-200) {
+				start += intervall;
+				tider.push(start);
+				//En måte å komme til en ny time når man passerer 60. % er modulo-operator
+				if (start % 100 >= 60-intervall) {
+					start += 100-(start % 100)-intervall;
+				}
+			}
+			//Lager selve nedtrekksmenyen
+			for (tid of tider) {
+			tidsmeny.innerHTML += '<option>' + tid + '</option>';
+			}
+		}
+
+		//Fyller nedtrekksmenyen for tid fra starten
+		lagTidsmeny(valgtFilial);
+
+		//Hver gang man endrer filial skal tidene endre seg
+		filialmeny.onchange = function() {
+			valgtFilial = filialmeny.selectedIndex;
+			lagTidsmeny(valgtFilial);
+		}
+
+		//Lager nedtrekkslisten for antall. Setter maks antall til 8 personer
+		for (var i = 1; i <= 8; i++) {
+			antallmeny.innerHTML += '<option>' + i + '</option>'
+		}
+
+		//Legger til ny reservasjon
+		bekreft.onclick = function() {
+			var filial = filialer[valgtFilial];
+			var tidspunkt = Number(tidsmeny.options[tidsmeny.selectedIndex].text); //henter ut hvilken tid som er valgt. Dette blir lagret som en string
+			var gjester = antallmeny.selectedIndex;
+			var nyBestilling = { //Lager en ny bestilling som et objekt
+				navn: bestnavn.value,
+				dato: bestdato.value,
+				tid: lagTidoversikt(tidspunkt),
+				antallgjester: gjester,
+				epost: bestepost.value,
+				bestillingsID: nesteBestillingsID,
+				overlappendeBestillinger: []
+			}
+			//Hvis bestillingen er gyldig skrives ut en oppsummering
+			if (sjekkDagTid(filial, nyBestilling)) {
+				filial.bestillinger.push(nyBestilling)
+				melding.innerHTML = 'Takk, ' + nyBestilling.navn + '. Du har nå bestilt et bord på ' + filial.navn + ' for ' + nyBestilling.antallgjester + ' personer, ' + nyBestilling.dato + ' klokken ' + nyBestilling.tid[0] + '. Det er sendt mail til ' + nyBestilling.epost;
+				nesteBestillingsID++;
+			}
+			//Hvis det ikke er ledig
+			else {
+				melding.innerHTML = 'Ikke ledig'
+			}
+		console.log(filial.bestillinger);
+		}
+
+		//Sjekker om det er kapasitet på den dagen (og etter hvert tiden) som er valgt. Foreløpig fungerer denne kun på dag. Tar inn en filial og en bestilling, begge er objekter.
+		function sjekkDagTid(filial, bestilling) {
+			var startSjekk = bestilling.tid;
+			var gjester = bestilling.gjester;
+			var kapasitet = filial.plasser;
+			var bestillingerPaaSammeDag = [];
+			var antallTatt = 0;
+			for (var i = 0; i < filial.bestillinger.length; i++) {
+				if (bestilling.dato == filial.bestillinger[i].dato) { //Finner alle eksisterende bestillinger i filialen som er på samme dag
+					bestillingerPaaSammeDag.push(filial.bestillinger[i]);
+				}
+			}
+
+
+			//Sjekker om bordet er ledig i tiden man prøver å reservere. Dette er ganske heftig så forklarer hver for-løkke ovenfor
+
+				//Går gjennom alle bestillinger på samme dag
+				for (var j = 0; j < bestillingerPaaSammeDag.length;j++) {
+					var lengde = bestillingerPaaSammeDag[j].tid.length
+					if (bestilling.tid[0] >= bestillingerPaaSammeDag[j].tid[0] && bestilling.tid[0] <= bestillingerPaaSammeDag[j].tid[lengde-1]) {
+						console.log('Hei2   ' + bestillingerPaaSammeDag[j].antallgjester)
+						antallTatt += bestillingerPaaSammeDag[j].antallgjester;
+					}
+					else if (bestilling.tid[0] <= bestillingerPaaSammeDag[j].tid[0] && bestilling.tid[lengde-1] >= bestillingerPaaSammeDag[j].tid[0]) {
+						console.log('Hei3')
+						antallTatt += bestillingerPaaSammeDag[j].antallgjester;
+					}
+					
+				}
+			console.log(antallTatt)
+			if (antallTatt + bestilling.antallgjester > kapasitet) {
+				return false;
+			}
+			return true;
+		}
+
+
+		function lagTidoversikt(tidspunkt) {
+			var start = tidspunkt;
+			var liste = [];
+			for (var i = tidspunkt; i < tidspunkt+200; i+=intervall) {
+				liste.push(i);
+				
+				if (i % 100 >= 60-intervall) {
+					i += 100-(start % 100)-intervall;
+				}
+				
+			}
+			return liste;
+		}
+
+
+	</script>
+
+
+</body>
+</html>

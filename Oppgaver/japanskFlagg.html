@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+        <canvas id="canvas" width="500" height="500"> </canvas>
+
+        <script type="text/javascript">
+
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        var bredde = Number(prompt('Skriv inn en bredde'));
+        var hoyde = Number(prompt('Skriv inn en høyde'));
+
+        var radius = (hoyde/4)-5
+
+        var start = 0
+        var stopp = 2*Math.PI;
+
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(0,0,bredde,hoyde);
+
+        ctx.fillStyle = 'red';
+        ctx.arc(bredde/2,hoyde/2,radius,start,stopp)
+        ctx.fill();
+
+    </script>
+  </body>
+</html>

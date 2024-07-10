@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"> </p>
+
+    <script type="text/javascript">
+
+        var utskrift = document.getElementById('utskrift');
+
+        var alder = Number(prompt('Tast inn din alder'));
+
+        if (alder >= 67) {
+        utskrift.innerHTML = 'Du er myndig, men du er dessuten pensjonist.';
+      }
+        else if (alder >= 18) {
+          utskrift.innerHTML = 'Du er myndig.';
+        }
+        else if (alder >=0){
+          utskrift.innerHTML = 'Du er ikke myndig enda.';
+        }
+        else {
+          utskrift.innerHTML = 'Oj, det har oppstått en feil.';
+        }
+
+    </script>
+
+  </body>
+</html>

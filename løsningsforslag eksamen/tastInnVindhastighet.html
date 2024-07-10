@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="no">
+<head>
+	<meta name="author" content="delmatte.no">
+	<title>Oppgave 2 - Wattproduksjon per time</title>
+</head>
+<body>
+<h1>Oppgave 2: Wattproduksjon per time</h1>
+
+Skriv inn vindhastigheten: <input type = "number" id = "vindhastighet"></input>
+<input type = "button" value = "Regn ut" onclick = "finish()"></input>
+<p id="test"></p>
+<script>
+var data = [
+        {
+            navn: "stille", // 0
+            ms: 0.2,
+            watt: 0
+           },
+        {
+            navn: "Flau vind", // 1
+            ms: 1.5,
+            watt: 0
+           },
+		          {
+            navn: "Svak vind", // 2
+            ms: 3.3,
+            watt: 2
+           },
+        {
+            navn: "Lett bris", // 3
+            ms: 5.4,
+            watt: 10
+           },
+        {
+            navn: "Laber bris", // 4
+            ms: 7.9,
+            watt: 60
+           },
+        {
+            navn: "Frisk bris", // 5
+            ms: 10.7,
+            watt: 150
+           },
+        {
+            navn: "Liten kuling", // 6
+            ms: 13.8,
+            watt: 400
+           },
+        {
+            navn: "Stiv kuling", // 7
+            ms: 17.1,
+            watt: 500
+           },
+		          {
+            navn: "Sterk kuling", // 8
+            ms: 20.7,
+            watt: 0
+           },
+        {
+            navn: "Liten storm", // 9
+            ms: 24.4,
+			watt: 0
+           },
+        {
+            navn: "Full storm", // 10
+            ms: 28.4,
+			watt: 0
+           },
+        {
+            navn: "Sterk storm", // 11
+            ms: 32.6,
+			watt: 0
+           },
+		{
+			navn: "Orkan", // 12
+            ms: 100,
+			watt: 0
+           }
+    ];
+
+function finish() {
+	var vindhastigheten = parseFloat(document.getElementById("vindhastighet").valueAsNumber.toFixed(1));
+	if (vindhastigheten<0) {
+		alert("Sett inn et positivt tall. Vind kan ikke være negativ.")
+		return
+		}
+	var i;
+	for (i = 0; i < data.length-1; i++) {
+		if (vindhastigheten<data[i].ms) {
+			break
+			}
+		}
+	if (vindhastigheten>15) {
+		test.innerHTML= 'Det er "' + data[i].navn +'". Vindmøllen produserer 0 watt, og er stengt av sikkerhetsgrunner. ';
+		return
+		}
+test.innerHTML= 'Det er "' + data[i].navn + '". Vindmøllen produserer ' + data[i].watt + ' watt.';
+}
+</script>
+</body>
+</html>

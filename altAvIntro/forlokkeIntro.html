@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+      <script type="text/javascript">
+
+        var utskrift = document.getElementById("utskrift");
+
+        var handleliste = ['Melk', 'Brød', 'Ost']
+
+        for (var i = 0; i < handleliste.length; i++) {
+          utskrift.innerHTML += handleliste[i] + ', ';
+        }
+
+      </script>
+  </body>
+</html>

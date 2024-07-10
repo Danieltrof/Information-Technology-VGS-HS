@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+      <p id="utskrift"></p>
+
+      <script type="text/javascript">
+
+        var utskrift = document.getElementById("utskrift");
+
+        var tekst = "Hei og god morgen."
+
+        var bokstav = "e"
+
+        var funnet = false;
+
+        //utskrift.innerHTML = tekst[0];
+
+        for (var i = 0; i < tekst.length; i++) { //For å finne siste kan vi også endre i til lengden av array og i>0 i--;
+          if (tekst[i] == bokstav) {
+            funnet = true;
+            break; //stopper løkken etter den finner bokstaven en gang. Uten break vil den finne bokstaven på største posisjon
+          }
+        }
+
+        if (funnet == true) {
+          utskrift.innerHTML = "Vi fant en " + bokstav + " på posisjon " + i; // = finner siste posisjon. += finner alle posisjoner
+        }
+        else {
+          utskrift.innerHTML = bokstav + " finnes ikke i teksten."
+        }
+
+      </script>
+
+  </body>
+</html>

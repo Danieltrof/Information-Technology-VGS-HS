@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+
+      var alder = Number(prompt('Tast inn din alder'));
+
+      if (alder >= 18) {
+      utskrift.innerHTML = 'Du er gammel nok til å ta lappen';
+    }
+      else if (alder == 16 || alder == 17) { // && betyr og. || betyr eller
+        utskrift.innerHTML = 'Du er ikke gammel nok til å ta lappen, men du kan øvelseskjøre'
+      }
+      else {
+        utskrift.innerHTML = 'Du er ikke gammel nok til å ta lappen, men du kan øvelseskjøre'
+      }
+
+/*
+      var skole = prompt('Hvilken skole går du på?');
+
+      if (skole == 'F21') {
+        utskrift.innerHTML = 'Jippi!!!! Du går på den beste skolen!';
+      }
+      else {
+        utskrift.innerHTML = 'Buu! Du går på en dårlig skole og bør skifte til F21.';
+      }
+*/
+    </script>
+
+  </body>
+</html>
