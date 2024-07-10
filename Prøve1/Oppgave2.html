@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById("utskrift");
+      var streng1 = "hei";
+      var streng2 = "hallo";
+
+      function strengLengde() {
+        if (streng1.length >= streng2.length) {
+          utskrift.innerHTML += streng1;     //Dersom streng1 er lenger enn eller lik streng2 vil den skrive ut streng1
+        }
+        else if (streng1.length < streng2.length) {
+          utskrift.innerHTML += streng2;    //Dersom streng2 er lenger enn streng1 vil den skrive ut streng2.
+        }
+      }
+      strengLengde();       //skriver ut resultatet av funksjonen.
+
+
+    </script>
+
+  </body>
+</html>

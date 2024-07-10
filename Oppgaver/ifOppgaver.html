@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p id="utskrift"></p>
+
+    <img src="Bildefiler 1-4/Terning1.jpg" width="400" id="terning1">
+
+    <script type="text/javascript">
+
+    var utskrift = document.getElementById('utskrift');
+/*
+    var tall = Math.round(Math.random());
+
+    if (tall ==1) {
+      utskrift.innerHTML = 'du trakk det høyeste tallet, altså ' + tall;
+    }
+
+    else if (tall ==0) {
+      utskrift.innerHTML = 'du trakk det laveste tallet, altså ' + tall;
+    }
+*/
+
+/*
+    var lonn = prompt('Hva er lønna di?');
+
+    if (lonn > 55000) {
+      utskrift.innerHTML = 'Ettersom du tjener mer enn 55000, må du betale skatt';
+    }
+
+    else if (lonn <=55000) {
+      utskrift.innerHTML = 'Ettersom du tjener mindre eller lik 55000, slipper du å betale skatt';
+    }
+*/
+
+/*
+    var tall1 = Number(prompt('Skriv inn det første tallet'));
+    var tall2 = Number(prompt('Skriv inn det andre tallet'));
+
+    if (tall1 == tall2) {
+      utskrift.innerHTML = 'Du skrev inn to like tall, dermed er ingen av de størst';
+    }
+
+    else if (tall1<tall2) {
+      utskrift.innerHTML = tall2 + ' er det største tallet av de du har tastet inn';
+    }
+
+    else if (tall1>tall2) {
+      utskrift.innerHTML = tall1 + ' er det største tallet av de du har tastet inn';
+    }
+*/
+
+/*
+    var klokkeslett = Number(prompt('Tast inn klokkeslettet (velg hele timer som 9, 13 osv.)'))
+      // morgen 6-9, formiddag 10-13, ettermiddag 14-17, kveld 18-23, natt 0-5
+
+    if (klokkeslett <0 || klokkeslett >24) {
+      utskrift.innerHTML = klokkeslett + ' Du har tastet inn et ugyldig klokkeslett';
+    }
+
+    else if (klokkeslett <=5) {
+      utskrift.innerHTML = 'God natt :)';
+    }
+
+    else if (klokkeslett <=9) {
+      utskrift.innerHTML = 'God morgen :)';
+    }
+
+    else if (klokkeslett <=13) {
+      utskrift.innerHTML = 'God formiddag :)';
+    }
+
+    else if (klokkeslett <=17) {
+      utskrift.innerHTML = 'God ettermiddag :)';
+    }
+
+    else if (klokkeslett <=23) {
+      utskrift.innerHTML = 'God kveld :)';
+    }
+
+    else {
+    utskrift.innerHTML = 'Noe har gått galt';
+  }
+
+*/
+
+/*
+    var alder = Number(prompt('Hvor gammel er du?'));
+
+    if(alder<=(-1)) {
+      utskrift.innerHTML = 'Du har skrevet en ugyldig alder'
+    }
+
+    else if(alder <=5) {
+      utskrift.innerHTML = 'Barn under 6 år, reiser gratis'
+    }
+
+    else if(alder <=17) {
+      utskrift.innerHTML = 'Du har valgt barnebillett. Månedskortet ditt koster 398kr.'
+    }
+
+    else if(alder <=19) {
+      utskrift.innerHTML = 'Du har valgt ungdomsbillett. Månedskortet ditt koster 398kr.'
+    }
+
+    else if(alder <=29) {
+      utskrift.innerHTML = 'Du har valgt studentbillett. Månedskortet ditt koster 477kr.'
+    }
+
+    else if(alder <=66) {
+      utskrift.innerHTML = 'Du har valgt voksenbillett. Månedskortet ditt koster 795kr.'
+    }
+
+    else if(alder >=67) {
+      utskrift.innerHTML = 'Du har valgt honnørbillett. Månedskortet ditt koster 398kr.'
+    }
+*/
+
+
+    var tall = Math.floor(Math.random()*6+1);
+
+    if (tall ==1) {
+      document.getElementById('terning1').src = "Bildefiler 1-4/Terning1.jpg"
+    }
+
+    else if (tall ==2) {
+      document.getElementById('terning1').src = "Bildefiler 1-4/Terning2.jpg"
+    }
+
+    else if (tall ==3) {
+      document.getElementById('terning1').src = "Bildefiler 1-4/Terning3.jpg"
+    }
+
+    else if (tall ==4) {
+      document.getElementById('terning1').src = "Bildefiler 1-4/Terning4.jpg"
+    }
+
+    else if (tall ==5) {
+      document.getElementById('terning1').src = "Bildefiler 1-4/Terning5.jpg"
+    }
+
+    else if (tall ==6) {
+      document.getElementById('terning1').src = "Bildefiler 1-4/Terning6.jpg"
+    }
+
+    </script>
+  </body>
+</html>

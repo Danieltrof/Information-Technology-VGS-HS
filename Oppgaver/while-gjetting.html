@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id='utskrift'></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+
+      var tilfeldig = Math.floor(Math.random()*100)+1;
+      var gjett;
+      var antallForsok = 0;
+      var gjettetRiktig = false;
+
+      while (gjettetRiktig == false) {
+        gjett = Number(prompt('Gjett et tall mellom 1 og 100'));
+        if (gjett == tilfeldig) {
+          gjettetRiktig = true;
+        }
+        else if (gjett > tilfeldig) {
+            alert('Tallet du har gjettet er for høyt.')
+        }
+        else if (gjett < tilfeldig) {
+          alert('Tallet du har gjettet er for lavt.')
+        }
+        else {
+          alert('Oj, en feil oppsto');
+        }
+        antallForsok ++;
+      }
+
+      utskrift.innerHTML = 'Du gjettet riktig og brukte ' + antallForsok + ' forsøk. Tallet var ' + tilfeldig;
+
+
+
+    </script>
+
+  </body>
+</html>

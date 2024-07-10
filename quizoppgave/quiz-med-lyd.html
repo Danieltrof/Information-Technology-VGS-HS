@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1>Musikkquiz</h1>
+    <p>1. Hvilket instrument er det som spilles i denne lydfilen?</p>
+
+     <audio controls>
+       <source src="fiolin.mp3" type='audio/mp3'>
+         <source src="fiolin.ogg" type='audio/ogg; codecs=vorbis'>
+     </audio>
+
+     <br><br><input type="radio" name="instrument" id="fiolin">
+     Fiolin
+     <br><input type="radio" name="instrument" id="gitar">
+     Gitar
+     <br><input type="radio" name="instrument" id="trommer">
+     Trommer
+
+
+     <p id="utskrift"></p>
+     <button id="knapp">Sjekk svar</button>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById("utskrift")
+      var knapp = document.getElementById("knapp")
+
+      var poeng = 0;
+      var fiolin = document.getElementById('fiolin');
+
+
+      knapp.onclick = function(){
+        Sjekkpoeng(fiolin.checked)
+        utskrift.innerHTML = "<br>Du fikk " + poeng + " poeng gjennom hele quizen";
+      }
+
+      function Sjekkpoeng() {
+        poeng = 0;
+        if (fiolin.checked) {
+        poeng++;
+        }
+      }
+
+    </script>
+
+  </body>
+</html>

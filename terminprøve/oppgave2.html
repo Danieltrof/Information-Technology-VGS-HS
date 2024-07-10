@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <input type="Number" id="antallInp" placeholder="n">
+    <button id="knapp">Bekreft</button>
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var antallInp = document.getElementById('antallInp');
+      var knapp = document.getElementById('knapp');
+      var utskrift = document.getElementById('utskrift');
+
+      var talliste = [];
+
+    knapp.onclick = function() {
+      array1(antallInp.value)
+      array2(antallInp.value)
+    }
+
+      function array1(n) {
+        var n = antallInp.value;
+        for (var i = 1; i < n; i++) {
+          talliste.push(i);
+        }
+        talliste.push(n); //skriver denne koden ettersom den ikke lar meg bruke n+1. Da får jeg f.eks. 30 istedenfor 4.
+        //utskrift.innerHTML += talliste;
+      }
+
+      function array2() {
+        for (var i = 0; i < talliste.length; i++) {
+          utskrift.innerHTML += talliste[i] + "-";
+        }
+      }
+
+
+    </script>
+
+  </body>
+</html>

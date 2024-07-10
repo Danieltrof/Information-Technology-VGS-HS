@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h3>Tast inn et tall mellom 0 og 4</h3>
+    <input type="number" id="felt1">
+    <button id="knapp">Bekreft</button>
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+/*
+      var talliste = [0,1,2,3,4,5,6,7,8,9];
+
+      for (var i = 0; i < talliste.length; i++) {
+        if (talliste[i] < 10) {
+        }
+      }
+
+      utskrift.innerHTML = talliste;
+*/
+/*
+      var bokstaver = ['D','a','n','i','e','l']
+      var i = 0
+      while (i < bokstaver.length) {
+        if (i != bokstaver.length-1) {
+          utskrift.innerHTML += bokstaver[i]
+        }
+        else {
+          utskrift.innerHTML += bokstaver[i];
+        }
+      i++;
+      }
+*/
+
+      var navnliste = ['Yulin', 'Michael', 'Karoline', 'Samuel', 'Stein Joar']
+
+      var felt1 = document.getElementById('felt1');
+      var knapp = document.getElementById('knapp');
+
+      knapp.onclick = function () {
+        var tall = Number(felt1.value);
+        utskrift.innerHTML = navnliste[tall]
+      }
+
+    </script>
+
+  </body>
+</html>

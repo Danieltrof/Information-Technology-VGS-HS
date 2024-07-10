@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		
+		html, body {
+			margin: 0;
+		}
+
+	</style>
+</head>
+<body>
+
+	<canvas id="canvas" height="400" width="400"></canvas>
+
+	<script type="text/javascript">
+		
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d')
+
+		var firkantX = Math.random()*canvas.width;
+		var firkantY = Math.random()*canvas.height;
+		var sidelengde = 50;
+		//ctx.fillRect(firkantX,firkantY,sidelengde,sidelengde);
+		ctx.beginPath();
+		ctx.arc(firkantX,firkantY,sidelengde,0,2*Math.PI)
+		ctx.fill();
+
+		canvas.onclick = function(evt) {
+			console.log(evt.clientX + ',' + evt.clientY);
+			/*
+			if(evt.clientX > firkantX && evt.clientX < firkantX+sidelengde) {
+				if (evt.clientY > firkantY && evt.clientY < firkantY+sidelengde) {
+					alert('Du traff!!!')
+				}
+			}
+			*/
+			var distanse = (evt.clientX-firkantX)**2+(evt.clientY-firkantY)**2;
+			if (Math.sqrt(distanse) < sidelengde) {
+				alert('Du traff');
+			}
+		}
+
+		canvas.onmousemove = function(evt) {
+			ctx.fillStyle = 'white';
+			ctx.fillRect(0,0,canvas.width,canvas.height);
+			ctx.beginPath();
+			ctx.arc(evt.clientX,evt.clientY,30,0,2*Math.PI);
+			ctx.stroke();
+		}
+
+		document.onkeydown = function(evt) {
+			console.log(evt.keyCode)
+			if (evt.keyCode == 39) {
+				ctx.fillStyle = 'white';
+				ctx.fillRect(0,0,canvas.width,canvas.height);
+				ctx.fillStyle = 'black';
+				firkantX++;
+				ctx.beginPath();
+				ctx.arc(firkantX,firkantY,sidelengde,0,2*Math.PI)
+				ctx.fill();
+			}
+		}
+
+	</script>
+
+
+
+
+
+</body>
+</html>

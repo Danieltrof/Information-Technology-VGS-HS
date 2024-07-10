@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h2>Daniel's Quiz</h2>
+    <h3>Du får ett poeng for hver riktig svar</h3>
+
+    <p>Hvor ble Daniel født?</p>
+    <input type="radio" name="fødeland" id="latvia">
+    Latvia
+    <br><input type="radio" name="fødeland" id="russland">
+    Russland
+    <br><input type="radio" name="fødeland" id="norge">
+    Norge
+    <br><input type="radio" name="fødeland" id="lithauen">
+    Lithauen
+
+    <p>Hvilken valorant agent er den nyeste?</p>
+    <input type="radio" name="agent" id="neon">
+    Neon
+    <br><input type="radio" name="agent" id="astra">
+    Astra
+    <br><input type="radio" name="agent" id="yoru">
+    Yoru
+
+    <p>Hvilken er mest populær?</p>
+    <input type="radio" name="sport" id="basketball">
+    Basketball
+    <br><input type="radio" name="sport" id="fotball">
+    Fotball
+    <br><input type="radio" name="sport" id="skihopp">
+    Skihopp
+    <br><input type="radio" name="sport" id="baseball">
+    Baseball
+
+    <p id="utskrift"></p>
+    <button id="knapp">Sjekk svar</button>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+      var knapp = document.getElementById('knapp');
+
+      var poeng = 0;
+      var latvia = document.getElementById('latvia');
+      var neon = document.getElementById('neon');
+
+      knapp.onclick = function(){
+        Sjekkpoeng(latvia.checked, neon.checked)
+        utskrift.innerHTML = "<br>Du fikk " + poeng + " poeng gjennom hele quizen";
+      }
+
+      function Sjekkpoeng() {
+        poeng = 0;
+        if (latvia.checked) {
+        poeng++;
+          }
+        if (neon.checked) {
+        poeng++;
+        }
+        if (fotball.checked) {
+        poeng++;
+        }
+      }
+
+
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<canvas id="canvas" height="400" width="400"></canvas>
+	<p id="utskrift"></p>
+
+	<script type="text/javascript">
+
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d')
+		var utskrift = document.getElementById('utskrift');
+
+		function leggTilBokstav() {
+			utskrift.innerHTML += 'H';
+		}
+
+		//var intervall = setInterval(leggTilBokstav,1000)
+
+		function tilfeldigeKvadrater() {
+			var x = Math.random()*canvas.width;
+			var y = Math.random()*canvas.height;
+			ctx.fillRect(x,y,2,2);
+		}
+
+		var intervall = setInterval(tilfeldigeKvadrater,1);
+
+
+
+
+	</script>
+
+</body>
+</html>

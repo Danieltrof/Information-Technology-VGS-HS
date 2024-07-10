@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <input type="text" id="fornavnInp" placeholder="Fornavn">
+    <input type="number" id="postnummerInp" placeholder="Postnummer">
+    <input type="text" id="kommuneInp" placeholder="Kommune">
+    <input type="text" id="kjonnInp" placeholder="Kjonn">
+    <button id="knapp">Bekreft</button>
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+    var fornavnInp = document.getElementById('fornavnInp');
+    var postnummerInp = document.getElementById('postnummerInp');
+    var kommuneInp = document.getElementById('kommuneInp');
+    var kjonnInp = document.getElementById('kjonnInp');
+    var knapp = document.getElementById('knapp');
+    var utskrift = document.getElementById('utskrift');
+
+    var personer = [];
+
+    knapp.onclick = function() {
+      nyPerson(fornavnInp.value,postnummerInp.value,kommuneInp.value,kjonnInp.value);
+/*
+//skriver ut alle som er tastet inn
+    utskrift.innerHTML = "Dette er personene som finnes: <br>";
+    for (var i = 0; i < personer.length; i++) {
+      utskrift.innerHTML += personer[i].fornavn + ", " + personer[i].postnummer +
+       ", " + personer[i].kommune + ", " + personer[i].kjonn + "<br>";
+    }
+*/
+
+/*
+//skriver ut alle som har postnummeret 7030
+    utskrift.innerHTML = "Dette er personene med postnummeret 7030: <br>";
+    for (var i = 0; i < personer.length; i++) {
+      if (personer[i].postnummer == 7030) {
+        utskrift.innerHTML += personer[i].fornavn + ", " + personer[i].postnummer +
+          ", " + personer[i].kommune + ", " + personer[i].kjonn + "<br>";
+      }
+    }
+*/
+
+/*
+//skriver ut alle som bor i Oslo
+    utskrift.innerHTML = "Dette er personene som bor i Oslo: <br>";
+    for (var i = 0; i < personer.length; i++) {
+      if (personer[i].kommune == "Oslo") {
+        utskrift.innerHTML += personer[i].fornavn + ", " + personer[i].postnummer +
+          ", " + personer[i].kommune + ", " + personer[i].kjonn + "<br>";
+      }
+    }
+*/
+
+/*
+//skriver ut alle jentene som bor i Trondheim
+    utskrift.innerHTML = "Dette er jentene som bor i Trondheim: <br>";
+    for (var i = 0; i < personer.length; i++) {
+      if (personer[i].kjonn == "Kvinne") {
+        if (personer[i].kommune == "Trondheim") {
+          utskrift.innerHTML += personer[i].fornavn + ", " + personer[i].postnummer +
+            ", " + personer[i].kommune + ", " + personer[i].kjonn + "<br>";
+        }
+      }
+    }
+*/
+
+//skriver ut alle personer med et fornavn på mer enn fire bokstaver
+    utskrift.innerHTML = "Dette er personene med et fornavn på mer enn fire bokstaver: <br>";
+    for (var i = 0; i < personer.length; i++) {
+      if (personer[i].fornavn.length > 4 ) {
+        utskrift.innerHTML += personer[i].fornavn + ", " + personer[i].postnummer +
+          ", " + personer[i].kommune + ", " + personer[i].kjonn + "<br>";
+      }
+    }
+  }
+
+    function nyPerson(fornavn, postnummer, kommune, kjonn) {
+      var person = {
+        fornavn: fornavn,
+        postnummer: postnummer,
+        kommune: kommune,
+        kjonn: kjonn
+      }
+      personer.push(person);
+    }
+
+    </script>
+
+  </body>
+</html>

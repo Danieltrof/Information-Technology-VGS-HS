@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+/*
+      var person = {
+        navn: 'Daniel',
+        alder: 18,
+        kjønn: 'Mann'
+      }
+
+      var person1 = {
+        navn: 'Yulin',
+        alder: 18,
+        kjønn: 'Mann'
+      }
+
+      var person2 = {
+        navn: 'Karoline',
+        alder: 18,
+        kjønn: 'Kvinne'
+      }
+
+      document.write(person.navn + ' er ' + person.alder + ' år og er en ' + person.kjønn);
+*/
+
+/*
+      var person = {
+        navn: 'Daniel',
+        favorittall: Math.floor(Math.random()*101)
+      }
+
+      document.write(person.navn + ' sitt favorittall er ' + person.favorittall);
+*/
+
+      var laveste = Number(prompt('Skriv inn det laveste tallet'));
+      var hoyeste = Number(prompt('Skriv inn det høyeste tallet'));
+
+      var tilfeldig = Math.floor(Math.random()*(hoyeste-laveste+1))+laveste;
+
+      document.write('Tilfeldig tall: ' + tilfeldig);
+      
+
+
+
+    </script>
+
+  </body>
+</html>

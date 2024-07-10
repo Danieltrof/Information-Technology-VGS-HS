@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <script type="text/javascript">
+
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+/*
+      var x = 20;
+      var y = 50;
+      var bredde = Number(prompt('Skriv inn en bredde'));
+      var hoyde = 90;
+
+      ctx.fillStyle = 'blue';
+      ctx.fillRect(x,y,bredde,hoyde); //de to første tallene definer posisjonen til canvas, de to andre definerer størrelsen til canvas;
+      ctx.strokeStyle = 'red';
+      ctx.strokeRect(x+bredde,y,bredde,hoyde);
+*/
+      var x = 200;
+      var y = 200;
+      var lengde = Number(prompt('Skriv inn en lengde'));
+/*
+      ctx.moveTo(x,y); //beveger pennen uten å tegne noe
+      ctx.lineTo(x+lengde,y+lengde); //beveger pennen samtidig som at den tegner.
+      ctx.moveTo(x,y+lengde);
+      ctx.lineTo(x+lengde,y);
+      ctx.stroke();
+*/
+/*
+  //tegne et kvadrat med 4 separate linjer
+      ctx.moveTo(x,y);
+      ctx.lineTo(x+lengde,y); //øverste streken
+
+      ctx.moveTo(x+lengde,y);
+      ctx.lineTo(x+lengde,y+lengde); //streken på høyre side
+
+      ctx.moveTo(x+lengde,y+lengde); //nederste streken
+      ctx.lineTo(x,y+lengde);
+
+      ctx.moveTo(x,y);
+      ctx.lineTo(x,y+lengde); //streken på venstre side
+
+      ctx.stroke();
+*/
+
+    ctx.moveTo(x-x,y);
+    ctx.lineTo(x+lengde,y);
+    ctx.stroke();
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById("utskrift");
+
+      var talliste = [1,2,1,1,4,6,4,4,3,2]
+      var i = 0;
+      var sok = 3;
+      var funnet = false;
+        while (i < talliste.length) {
+          if (talliste[i] == sok) {
+            utskrift.innerHTML = "Tallet " + sok + ' finnes i tallisten og er nummer ' + i + ' på listen';
+            funnet = true;
+          }
+      i++;
+}
+          if (funnet == false) {
+            utskrift.innerHTML = "Tallet " + sok + ' finnes ikke i tallisten';
+          }
+
+
+
+    </script>
+
+  </body>
+</html>

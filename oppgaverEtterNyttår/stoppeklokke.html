@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1>Stoppeklokke</h1>
+    <p id="utskrift"></p>
+    <button id="knapp">Stopp</button>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById("utskrift");
+      var knapp = document.getElementById("knapp");
+
+      var sekunder = 0;
+      var minutter = 0;
+      var timer = 0;
+
+      function tid() {
+        sekunder++
+        if (sekunder == 60) {
+          minutter++
+          sekunder=0;
+        }
+        if (minutter == 60) {
+          timer++
+          minutter=0;
+        }
+        utskrift.innerHTML = timer + "t " + minutter + "min " + sekunder + "sek";
+      }
+
+      knapp.onclick = function() {
+        Stopp()
+      }
+
+      function Stopp() {
+        clearInterval(interval)
+      }
+
+      var interval = setInterval(tid,1000)
+
+    </script>
+
+  </body>
+</html>

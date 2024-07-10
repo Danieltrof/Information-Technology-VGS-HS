@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id='utskrift'></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+
+      var tilfeldig = Math.floor(Math.random()*100)+1;
+      var gjett = 62;
+      var antallForsok = 0;
+      var gjettetRiktig = false;
+
+      while (gjettetRiktig == false) {
+        if (gjett == tilfeldig) {
+          gjettetRiktig = true;
+          }
+          else if (gjett > tilfeldig) {
+              tilfeldig -=1
+          }
+          else if (gjett < tilfeldig) {
+            tilfeldig +=1
+            }
+        else {
+          alert('Feil')
+        }
+        antallForsok ++;
+        tilfeldig = Math.floor(Math.random()*100)+1;
+    }
+
+
+      utskrift.innerHTML = 'Maskinen gjettet riktig og brukte ' + antallForsok + ' forsøk.';
+
+
+
+    </script>
+
+  </body>
+</html>

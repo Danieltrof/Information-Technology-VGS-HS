@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h2>Arealet av en firkant</h2>
+    <input type="Number" id="lengdeInp" placeholder="Lengde">
+    <input type="Number" id="breddeInp" placeholder="Bredde">
+    <button id="knapp">Bekreft</button>
+    <p id="utskrift"></p>
+
+    <canvas id="canvas" width="600" height="600"></canvas>
+
+    <script type="text/javascript">
+
+//oppgave a
+    var lengdeInp = document.getElementById('lengdeInp');
+    var breddeInp = document.getElementById('breddeInp');
+    var knapp = document.getElementById('knapp');
+    var utskrift = document.getElementById('utskrift');
+
+    knapp.onclick = function() {
+      arealFirkant(lengdeInp.value,breddeInp.value);
+        }
+
+        function arealFirkant(bredde,lengde) {
+          bredde = breddeInp.value;
+          lengde = lengdeInp.value;
+          areal = bredde*lengde;
+          utskrift.innerHTML = "Areal av en firkant med en lengde på: " + lengdeInp.value +
+          " og en bredde på: " + breddeInp.value + " tilsvarer et areal på: " + areal;
+
+//oppgave b
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        if (breddeInp.value>lengdeInp.value) {
+          var x = 20;
+          var y = 100;
+          var bredde2 = 300;
+          var hoyde2 = 200;
+
+          ctx.fillStyle = 'blue';
+          ctx.fillRect(x,y,bredde2,hoyde2);
+        }
+        else if (breddeInp.value<lengdeInp.value) {
+          var x = 20;
+          var y = 100;
+          var bredde2 = 200;
+          var hoyde2 = 300;
+
+          ctx.fillStyle = 'blue';
+          ctx.fillRect(x,y,bredde2,hoyde2);
+        }
+       else if (breddeInp.value==lengdeInp.value) {
+          var x = 20;
+          var y = 100;
+          var bredde2 = 300;
+          var hoyde2 = 300;
+
+          ctx.fillStyle = 'blue';
+          ctx.fillRect(x,y,bredde2,hoyde2);
+        }
+      }
+
+    </script>
+
+  </body>
+</html>

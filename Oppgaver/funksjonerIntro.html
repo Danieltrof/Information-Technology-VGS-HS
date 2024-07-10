@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+    var utskrift = document.getElementById('utskrift');
+
+      var tall1 = Number(prompt('Skriv inn det første tallet'));
+      var tall2 = Number(prompt('Skriv inn det andre tall'));
+      var regneart = prompt('Skriv inn en regneart');
+
+      if (tall1+tall2) {
+        utskrift.innerHTML = (tall1 + regneart + tall2)
+      }
+
+      else if (tall1-tall2) {
+        utskrift.innerHTML = (tall1 + regneart + tall2)
+      }
+
+      else if (tall1*tall2) {
+        utskrift.innerHTML = (tall1 + regneart + tall2)
+      }
+
+      else if (tall1/tall2) {
+        utskrift.innerHTML = (tall1 + regneart + tall2)
+      }
+
+
+
+
+    </script>
+
+  </body>
+</html>

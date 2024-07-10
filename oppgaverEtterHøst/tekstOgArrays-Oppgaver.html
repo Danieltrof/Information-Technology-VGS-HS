@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+      <p id="utskrift"></p>
+
+      <script type="text/javascript">
+
+        var utskrift = document.getElementById("utskrift");
+
+//      var tekst = "Ja, jeg liker banan";
+/*
+        var bokstav = ["a","b","e"]
+
+        var funnet = false;
+
+//første element i array som blir funnet + hvilken posisjon den er i forhold til tekst
+        for (var i = 0; i < tekst.length; i++) {
+          for (var j = 0; j < bokstav.length; j++) {
+            if (tekst[i] == bokstav[j]) {
+              funnet = true;
+              utskrift.innerHTML += "Vi fant en " + bokstav[j] + " på posisjon " + i + "<br>";
+              break;
+            }
+          }
+            if (funnet == true) {
+              break;
+            }
+        }
+*/
+/*
+//antall ganger et element blir funnet i teksten
+        var bokstav = "a";
+
+        var teller = 0;
+
+        for (var i = 0; i < tekst.length; i++) {
+          if (tekst[i] == bokstav) {
+            teller++;
+            utskrift.innerHTML = "Vi fant bokstaven " + bokstav + " " + teller + " ganger."
+          }
+          else if (teller == 0) {
+            utskrift.innerHTML = "Vi fant ikke bokstaven " + bokstav;
+          }
+        }
+*/
+
+// skriver ut stringen loddrett
+        var tekst = "Banan er godt"
+
+        for (var i = 0; i < tekst.length; i++) {
+          utskrift.innerHTML += tekst[i] + "<br>"
+        }
+
+      </script>
+
+  </body>
+</html>

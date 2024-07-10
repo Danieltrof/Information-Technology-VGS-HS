@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body{ //bruker style for å sentrere spillet
+        margin: 0px;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <h1>Snake</h1>
+    <h3>Bruk piltastene for å bevege på slangen</h3>
+
+    <button onClick="window.location.reload();">Spill igjen</button>
+
+    <canvas id="canvas" width="400" height="400"></canvas>
+
+    <h3>High scores</h3>
+    <div id="rekorderUtskrift"></div>
+
+    <script type="text/javascript">
+
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      var rekorderUtskrift = document.getElementById("rekorderUtskrift"); //divboksen til high score
+
+      var fart = 10;
+
+      var tileAntall = 20; //antall "fliser", eller hva enn jeg skal kalle det. Siden canvas er 400,400 har vi en tileAntall på 20x20
+      var tileSize = canvas.width / tileAntall - 2; //størrelsen på disse flisene, -2 gjør sånn at det er et lite "mellomrom" mellom hver tile
+      var hodeX = 10; //posisjonen på hodet til slangen
+      var hodeY = 10;
+      var snakeDeler = [];
+      var haleLengde = 2; //snake starter ikke bare med hode, starter med to "ekstra" blokker, som vi kan definere som halen.
+
+      var epleX = 5; //start posisjonen til eple
+      var epleY = 5;
+
+      var xHastighet = 0; //hastigheten til slangen i x
+      var yHastighet = 0;
+
+      var keyTrukket = false; //gjør sånn at man kun kan trykke en knapp om gangen, uten denne kunne man tape innimellom hvis man trakk på 2 knapper samtidig.
+
+      var score = 0;
+
+      var crunchLyd = new Audio("appleCrunch.wav"); //Fikk ikke til å bruke koden vi har lært om lyd, så brukte en alternativ kode.
+      //https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement/Audio
+      //https://freesound.org/people/Koops/sounds/20281/
+
+      var rekorder = [];
+      var rekordOppdatert = false;
+
+
+      if(localStorage.getItem("rekorder") != null){  //localStorage lagrer data. De lagrede dataene lagres på tvers av nettleserøkter. Altså vil high scores lagres selv om nettsiden lukkes.
+        rekorder = localStorage.getItem("rekorder"); //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+        if(rekorder.length > 0){
+          rekorder = JSON.parse(rekorder);
+          //https://www.w3schools.com/js/js_json_parse.asp
+        }
+      }
+
+      function skrivRekorder() { //funksjon som skriver ut rekordene
+        rekorderUtskrift.innerHTML = "Top 5 high scores:";
+        for (var i = 1; i <= rekorder.length; i++) {
+          rekorderUtskrift.innerHTML += "<br>" + parseInt(i) + ". " + rekorder[rekorder.length - i];
+          //https://www.w3schools.com/jsref/jsref_parseint.asp
+        }
+      }
+
+
+      //game loop
+      function tegnSpillet() {
+        endreSnakePosisjon();
+        var result = isGameOver();
+        if (result) {
+          return; //stopper spillet ved gameOver
+        }
+
+        clearScreen();
+
+        sjekkEpleKollisjon();
+        tegnEple();
+        tegnSnake();
+
+        tegnScore();
+
+        setTimeout(tegnSpillet, 1000/ fart) //setTimeout utfører en funksjon når timeren går ut. hvert sekund/fart
+        //https://www.w3schools.com/jsref/met_win_settimeout.asp
+      }
+
+      function isGameOver() {
+        var gameOver = false;
+
+        if (yHastighet == 0 && xHastighet == 0) { //sånn at det ikke blir gameover med engang spillet starter
+          return false;
+        }
+
+        //vegger
+        if (hodeX < 0) { //altså når x-koordinatene til hode er mindre enn canvas, så vil man tape
+          gameOver = true; //venstre "vegg"
+        }
+        else if (hodeX == tileAntall) { //hvis x-koordinatene til hode er større enn canvas
+          gameOver = true; //høyre "vegg"
+        }
+        else if (hodeY < 0) { // når y-koordinatene -.-
+          gameOver = true; //nedre vegg
+        }
+        else if (hodeY == tileAntall) { // når y-koordinatene -.-
+          gameOver = true; //øvre vegg
+        }
+
+        for (var i = 0; i < snakeDeler.length; i++) { //Hvis man forsøker å spise seg selv, så taper man.
+          var kroppsdel = snakeDeler[i];
+          if (kroppsdel.x == hodeX && kroppsdel.y == hodeY) {
+            gameOver = true;
+            break;
+          }
+        }
+
+        if (gameOver) {
+          ctx.fillStyle = 'white';
+          ctx.font = "50px Verdana";
+          ctx.fillText("Game Over!", canvas.width / 6.5, canvas.height / 2) //teksten som dukker opp når du taper
+          //canvas.width/6.5 , tallet er tilfeldig. Det bare så bra ut
+          //canvas.height/2 sentrerer teksten i midten med tanken på y-koordinatene.
+
+          if (rekordOppdatert == false) {
+            if(rekorder.length < 5) { //sorterer highcores
+              rekorder.sort(function(a,b){return a - b}); //https://medium.com/coding-at-dawn/how-to-sort-an-array-numerically-in-javascript-2b22710e3958#:~:text=In%20order%20to%20sort%20a,difference%20between%20the%20two%20numbers.
+              localStorage.setItem("rekorder", JSON.stringify(rekorder)); //sorterer rekorder
+              skrivRekorder();
+              }
+
+            else {
+              for (var i = 0; i < rekorder.length; i++) { //Hvis det er rekord så plasserer den den nye rekorder og fjerner uaktuelle gammel rekord
+              rekorder.push(score);
+              rekorder.sort(function(a,b){return a - b}); //trekker det andre elementet fra det første elementet, og returnerer dermed en negativ verdi hvis det andre elementet er større
+              rekorder.shift(); //ettersom vi sorterte fra minst til størst, fjerner vi det første elementet
+              localStorage.setItem("rekorder", JSON.stringify(rekorder));
+              i = rekorder.length;
+              skrivRekorder();
+              }
+            }
+            rekordOppdatert = true; //Oppdaterer rekorden kun når det er gameOver
+          }
+        }
+
+        return gameOver;
+      }
+
+      function tegnScore() {
+        ctx.fillStyle = 'white';
+        ctx.font = "10px Verdana"
+        ctx.fillText("Score " + score, canvas.width-70, 10)
+      }
+
+      function clearScreen() {
+        ctx.fillStyle = "black";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+      }
+
+      class Snakekroppsdel { //class er en mal for å lage objekter. Bruker denne senere for kroppen til slangen.
+        constructor(x, y) { //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+          this.x = x;
+          this.y = y;
+        }
+      }
+
+      function tegnSnake() {
+        ctx.fillStyle = 'green'
+        for (var i = 0; i < snakeDeler.length; i++) {
+          var kroppsdel = snakeDeler[i];
+          ctx.fillRect(kroppsdel.x * tileAntall, kroppsdel.y * tileAntall, tileSize, tileSize);
+        }
+
+        snakeDeler.push(new Snakekroppsdel(hodeX, hodeY)); //tegner kropssdel der hvor hode var
+        if (snakeDeler.length > haleLengde) {
+          snakeDeler.shift();
+        }
+
+        ctx.fillStyle = 'orange';
+        ctx.fillRect(hodeX * tileAntall, hodeY * tileAntall, tileSize, tileSize); //tegner hodet til sist, sånn at man ser den på starten av spillet og ikke halen
+      }
+
+      function endreSnakePosisjon() { //gjør at slangen beveger seg
+        hodeX = hodeX + xHastighet;
+        hodeY = hodeY + yHastighet;
+
+        keyTrukket = false;
+      }
+
+      function tegnEple() { //tegner selve eplet
+        ctx.fillStyle = 'red';
+        ctx.fillRect(epleX*tileAntall,epleY*tileAntall, tileSize, tileSize)
+      }
+
+      function sjekkEpleKollisjon() {
+        if (epleX == hodeX && epleY == hodeY) { //Hvis hode til slangen har samme koordinatene som eplet
+          epleX = Math.floor(Math.random()*tileAntall); //endrer posisjon til eple til et tilfeldig sted
+          epleY = Math.floor(Math.random()*tileAntall);
+          haleLengde++;
+          score += 1000; //1000 poeng per eple spist
+          fart += 0.5; //øker farten for hvert eple man spiser
+          crunchLyd.play(); //spillet ble veldig stille, så jeg la til en lydfil for hver gang man spiser et eple
+        }
+      }
+
+      document.body.addEventListener('keydown', keyDown);
+
+      function keyDown(event) {
+        //up
+        if (keyTrukket == false) {
+
+          if (event.keyCode == 38) {
+            if (yHastighet == 1) { //stopper deg fra å gå i motsatt retning
+              return;
+            }
+            yHastighet = -1;
+            xHastighet = 0;
+
+            keyTrukket = true;
+          }
+
+          //down
+          if (event.keyCode == 40) {
+            if (yHastighet == -1) {
+              return;
+            }
+            yHastighet = 1;
+            xHastighet = 0;
+
+            keyTrukket = true;
+          }
+
+          //left
+          if (event.keyCode == 37) {
+            if (xHastighet == 1) {
+              return;
+            }
+            yHastighet = 0;
+            xHastighet = -1;
+
+            keyTrukket = true;
+          }
+
+          //right
+          if (event.keyCode == 39) {
+            if (xHastighet == -1) {
+              return;
+            }
+            yHastighet = 0;
+            xHastighet = 1;
+
+            keyTrukket = true;
+          }
+        }
+      }
+
+      tegnSpillet();
+      skrivRekorder();
+
+      /*
+      INSPIRASJONS KILDER
+      https://www.youtube.com/watch?v=QTcIXok9wNY&t=240s
+      https://www.youtube.com/watch?v=AaGK-fj-BAM&t=183s
+      https://www.youtube.com/watch?v=21eSpMtJwrc
+      https://www.educative.io/blog/javascript-snake-game-tutorial
+      */
+
+      /*
+      Direkte KILDE
+      https://www.w3schools.com/Jsref/met_loc_reload.asp
+      https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+      https://freesound.org/people/Koops/sounds/20281/
+      https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+      https://www.w3schools.com/js/js_json_parse.asp
+      https://www.w3schools.com/jsref/met_win_settimeout.asp
+      https://medium.com/coding-at-dawn/how-to-sort-an-array-numerically-in-javascript-2b22710e3958#:~:text=In%20order%20to%20sort%20a,difference%20between%20the%20two%20numbers
+      //https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement/Audio
+      */
+
+    </script>
+
+  </body>
+</html>

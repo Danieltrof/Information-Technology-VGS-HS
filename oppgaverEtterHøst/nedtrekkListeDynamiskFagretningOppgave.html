@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <select id="fagretningSel"></select>
+
+    <select id="programfagSel"></select>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+    var fagretningSel = document.getElementById('fagretningSel')
+    var programfagSel = document.getElementById('programfagSel')
+    var utskrift = document.getElementById('utskrift')
+
+    var sso = {
+      navn: "Språk,Samfunnsfag og Økonomi",
+      programfag: ["Psykologi", "Markedsføring", "Politikk og Menneskerettigheter"]
+    }
+
+    var realfag = {
+      navn: "Realfag",
+      programfag: ["IT", "Fysikk", "R2", "Kjemi"]
+    }
+
+    var fagretningliste = [sso, realfag];
+
+    var str = "<option>Velg en fagretning</option>";
+
+    for (var i = 0; i < fagretningliste.length; i++) {
+      str += "<option>" + fagretningliste[i].navn + "</option>"
+    }
+
+    fagretningSel.innerHTML = str;
+
+    var valgtFagretning;
+
+    fagretningSel.onchange = function() {
+      valgtFagretning = fagretningSel.selectedIndex - 1;
+      str = "<option>Velg et programfag</option>";
+      for (var i = 0; i < fagretningliste[valgtFagretning].programfag.length; i++) {
+        str += "<option>" + fagretningliste[valgtFagretning].programfag[i] + "</option>";
+      }
+      programfagSel.innerHTML = str;
+    }
+
+    programfagSel.onchange = function() {
+      var valgtProgramfag = programfagSel.selectedIndex - 1;
+      utskrift.innerHTML = "Du har valgt programfaget " + fagretningliste[valgtFagretning].programfag[valgtProgramfag]
+      + ", fra " + fagretningliste[valgtFagretning].navn;
+    }
+
+        </script>
+
+  </body>
+</html>

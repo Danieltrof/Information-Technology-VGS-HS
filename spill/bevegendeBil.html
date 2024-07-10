@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      var utskrift = document.getElementById("utskrift");
+
+      function tegne(x) {
+        //bakgrunn og bil
+        ctx.fillStyle = "lime";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = "blue";
+        ctx.fillRect(0,0,canvas.width,canvas.height*(2/5));
+        ctx.fillStyle = "grey";
+        ctx.fillRect(0,canvas.height*(3/5)+canvas.height/10,canvas.width,canvas.height/5);
+        ctx.fillStyle = "red";
+        ctx.fillRect(canvas.width/20,canvas.height*(3/5)+(canvas.height/10)*2,canvas.width/10,canvas.height/20);
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.arc(canvas.width/20+((canvas.width/20)/2),((canvas.height*(3/5))+(canvas.height/10)*2)+canvas.height/20,canvas.width/62.5,0,Math.PI*2);
+        ctx.arc(canvas.width/20+(((canvas.width/20)/2)*3),((canvas.height*(3/5))+(canvas.height/10)*2)+canvas.height/20,canvas.width/62.5,0,Math.PI*2);
+        ctx.fill();
+        ctx.closePath();
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(0,0,canvas.width,canvas.height);
+        ctx.strokeRect(0,0,canvas.width,canvas.height*(2/5));
+        ctx.strokeRect(0,canvas.height*(3/5)+canvas.height/10,canvas.width,canvas.height/5);
+        ctx.strokeRect(canvas.width/20,canvas.height*(3/5)+(canvas.height/10)*2,canvas.width/10,canvas.height/20);
+
+        //animasjon
+        ctx.fillStyle = "purple";
+        ctx.fillRect(canvas.width+(canvas.width/8)-x,canvas.height/2,canvas.width/10,canvas.height/10);
+        ctx.strokeRect(canvas.width+(canvas.width/8)-x,canvas.height/2,canvas.width/10,canvas.height/10);
+        ctx.fillStyle = "black";
+        ctx.fillRect((canvas.width+(canvas.width/8)+(canvas.width/50))-x,canvas.height/2+(canvas.width/(canvas.width/12.5)),canvas.width/40,canvas.height/14);
+        ctx.fillStyle = "lightgrey";
+        ctx.fillRect(canvas.width+(canvas.width/2)-x,canvas.height/4,canvas.width/10,canvas.height/4);
+        ctx.strokeRect(canvas.width+(canvas.width/2)-x,canvas.height/4,canvas.width/10,canvas.height/4);
+        ctx.fillStyle = "brown";
+        ctx.fillRect(canvas.width*1.9-x,canvas.height/2+(canvas.height/20),canvas.width/40,canvas.height/8);
+        ctx.strokeRect(canvas.width*1.9-x,canvas.height/2+(canvas.height/20),canvas.width/40,canvas.height/8);
+        ctx.beginPath();
+        ctx.fillStyle = "darkgreen";
+        ctx.arc(canvas.width*1.913-x,canvas.height/2+(canvas.height/20),canvas.width/20,0,Math.PI*2);
+        ctx.arc(canvas.width*1.87-x,canvas.height/2+(canvas.height/15),canvas.width/25,0,Math.PI*2);
+        ctx.arc(canvas.width*1.953-x,canvas.height/2+(canvas.height/15),canvas.width/25,0,Math.PI*2);
+        ctx.fill();
+        ctx.closePath();
+
+
+      }
+
+      var i = 0;
+      var antallGater = 0;
+
+      function okei() {
+        i++;
+        tegne(i);
+        if (i==canvas.width*2) {
+          antallGater++;
+          i=0;
+        }
+        utskrift.innerHTML = "Antall gater passert: " + antallGater;
+      }
+
+      var interval = setInterval(okei,20);
+
+    </script>
+
+  </body>
+</html>

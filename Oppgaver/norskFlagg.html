@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+        <canvas id="canvas" width="500" height="500"> </canvas>
+
+        <script type="text/javascript">
+
+
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        var kvadrat1 = 3/11; //horisontalt
+        var kvadrat2 = 3/8; //vertikalt
+        var blaa = 1/11;
+        var blaa2 = 1/8;
+        var hvit = 1/22;
+        var hvit2 = 1/16
+        var rektangel = 6/11;
+        var lengde = Number(prompt('Hvor langt skal flagget være?'));
+        var hoyde = Number(prompt('Hvor høyt skal flagget være?'));
+
+        ctx.fillStyle = 'red';
+        ctx.fillRect(0,0,lengde*kvadrat1,hoyde*kvadrat2); //Øverst til venstre
+        ctx.fillStyle = 'blue';
+        ctx.fillRect((lengde*kvadrat1)+(lengde*hvit),0,lengde*blaa,hoyde); //vertikal opp/ned (blå)
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0,(hoyde*kvadrat2)+(hoyde*hvit2),lengde,hoyde*blaa2);  //horisontal (blå)
+        ctx.fillStyle = 'red';
+        ctx.fillRect(0,(hoyde*kvadrat2)+(hoyde*blaa2*2),lengde*kvadrat1,hoyde*kvadrat2); //nederst til venstre
+        ctx.fillStyle = 'red';
+        ctx.fillRect((lengde*kvadrat1)+(lengde*blaa*2),0,lengde*rektangel,hoyde*kvadrat2); //øverst til høyre
+        ctx.fillStyle = 'red';
+        ctx.fillRect((lengde*kvadrat1)+(lengde*blaa*2),(hoyde*kvadrat2)+(hoyde*blaa2*2),lengde*rektangel,hoyde*kvadrat2); //nederst til høyre
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1>Champions League trekning</h1>
+
+    <h3>Gruppe vinnere</h3>
+    <ul>
+      <li>Ajax</li>
+      <li>Bayern Munich</li>
+      <li>Juventus</li>
+      <li>Liverpool</li>
+      <li>LOSC Lille</li>
+      <li>Manchester United</li>
+      <li>Real Madrid</li>
+      <li>Atletico Madrid</li>
+    </ul>
+
+    <h3>Gruppe toere</h3>
+    <ul>
+      <li>Atletico Madrid</li>
+      <li>Benfica</li>
+      <li>Chelsea</li>
+      <li>Inter Milan</li>
+      <li>PSG</li>
+      <li>RB Salzburg</li>
+      <li>Sporting CP</li>
+      <li>Villarreal</li>
+    </ul>
+
+    <p id="utskrift"></p>
+    <button id="knapp">Bekreft</button>
+
+    <script type="text/javascript">
+
+    var utskrift = document.getElementById('utskrift');
+
+    var Ajax = {
+      navn: "Ajax",
+      land: "Nederland",
+      gruppe1: "seeded",
+      gruppe2: "C"
+    }
+
+    var Bayern = {
+      navn: "Bayern Munich",
+      land: "Tyskland",
+      gruppe1: "seeded",
+      gruppe2: "E"
+    }
+
+    var Juventus = {
+      navn: "Juventus",
+      land: "Italia",
+      gruppe1: "seeded",
+      gruppe2: "H"
+    }
+
+    var Liverpool = {
+      navn: "Liverpool",
+      land: "England",
+      gruppe1: "seeded",
+      gruppe2: "B"
+    }
+
+    var Lille = {
+      navn: "LOSC Lille",
+      land: "Frankrike",
+      gruppe1: "seeded",
+      gruppe2: "G"
+    }
+
+    var City = {
+      navn: "Manchester City",
+      land: "England",
+      gruppe1: "seeded",
+      gruppe2: "A"
+    }
+
+    var United = {
+      navn: "Manchester United",
+      land: "England",
+      gruppe1: "seeded",
+      gruppe2: "F"
+    }
+
+    var Real = {
+      navn: "Real Madrid",
+      land: "Spania",
+      gruppe1: "seeded",
+      gruppe2: "D"
+    }
+
+    var Atletico = {
+      navn: "Atletico Madrid",
+      land: "Spania",
+      gruppe1: "unseeded",
+      gruppe2: "B"
+    }
+
+    var Benfica = {
+      navn: "Benfica",
+      land: "Portugal",
+      gruppe1: "unseeded",
+      gruppe2: "E"
+    }
+
+    var Chelsea = {
+      navn: "Chelsea",
+      land: "England",
+      gruppe1: "unseeded",
+      gruppe2: "H"
+    }
+
+    var Inter = {
+      navn: "Inter Milan",
+      land: "Italia",
+      gruppe1: "unseeded",
+      gruppe2: "D"
+    }
+
+    var psg = {
+      navn: "PSG",
+      land: "Frankrike",
+      gruppe1: "unseeded",
+      gruppe2: "A"
+    }
+
+    var Salzburg = {
+      navn: "RB Salzburg",
+      land: "Østerrike",
+      gruppe1: "unseeded",
+      gruppe2: "G"
+    }
+
+    var Sporting = {
+      navn: "Sporting CP",
+      land: "Portugal",
+      gruppe1: "unseeded",
+      gruppe2: "C"
+    }
+
+    var Villarreal = {
+      navn: "Villarreal",
+      land: "Spania",
+      gruppe1: "unseeded",
+      gruppe2: "F"
+    }
+
+    var gruppeVinnere = [Ajax, Bayern, Juventus, Liverpool, Lille, City, United, Real];
+    var gruppeToere = [Atletico, Benfica, Chelsea, Inter, psg, Salzburg, Sporting, Villarreal];
+    var muligeMotstandere = [];
+    var endeligMotstander = [];
+
+    var trukketLag = gruppeToere[Math.floor(Math.random()*8)];
+    console.log(trukketLag)
+
+    for (var i = 0; i < gruppeVinnere.length; i++) {
+      if (trukketLag.gruppe2 != gruppeVinnere[i].gruppe2) {
+        muligeMotstandere.push(gruppeVinnere[i]);
+      }
+    }
+
+    for (var i = 0; i < muligeMotstandere.length; i++) {
+      if (trukketLag.land != muligeMotstandere[i].land) {
+        endeligMotstander.push(muligeMotstandere[i]);
+      }
+    }
+
+
+    knapp.onclick = function () {
+      utskrift.innerHTML += "Laget: " + trukketLag.navn + " ble trukket fra gruppetoere" + "<br>";
+      utskrift.innerHTML += endeligMotstander[2].navn;
+    }
+
+
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h2>Togreise</h2>
+    <select id="linjeSel"></select>
+    <select id="startsstasjonSel"></select>
+    <select id="endestasjonSel"></select>
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+//Oppgave 3a
+
+    var linjeSel = document.getElementById('linjeSel')
+    var startsstasjonSel = document.getElementById('startsstasjonSel')
+    var endestasjonSel = document.getElementById('endestasjonSel')
+    var utskrift = document.getElementById('utskrift');
+
+    var linje2 = {
+      navn: "Linje2",
+      stasjoner: ["Østerås","Eiksmarka","Røa","Hovseter","Smestad","Majorstuen",
+        "Nationaltheatret","Stortinget","Jernbanetorget","Grønland","Tøyen",
+        "Helsfyr","Brynseng","Hellerud","Tveita","Furuset","Ellingsrudåsen"]
+    }
+
+    var linje3 = { 
+      navn: "Linje3",
+      stasjoner: ["Kolsås","Gjettum","Avløs","Haslum","Bekkestua","Jar",
+        "Ullernåsen","Smestad","Majorstuen","Nationaltheatret","Stortinget",
+        "Jernbanetorget","Grønland","Tøyen","Helsfyr","Brynseng","Hellerud",
+        "Oppsal","Bøler","Mortensrud"]
+    }
+
+    var linjeliste = [linje2,linje3];
+
+    var str = "<option>Velg en linje</option>";
+
+    for (var i = 0; i < linjeliste.length; i++) {
+      str += "<option>" + linjeliste[i].navn + "</option>"
+    }
+
+    linjeSel.innerHTML = str;
+
+    var valgtLinje;
+
+    linjeSel.onchange = function() {
+      valgtLinje = linjeSel.selectedIndex - 1;
+      str = "<option>Velg startsstasjon</option>";
+      for (var i = 0; i < linjeliste[valgtLinje].stasjoner.length; i++) {
+        str += "<option>" + linjeliste[valgtLinje].stasjoner[i] + "</option>";
+      }
+      startsstasjonSel.innerHTML = str;
+    }
+
+    startsstasjonSel.onchange = function() {
+      valgtStartsstasjon = startsstasjonSel.selectedIndex - 1;
+      str = "<option>Velg endestasjon</option>";
+      for (var i = 0; i < linjeliste[valgtLinje].stasjoner.length; i++) {
+        str += "<option>" + linjeliste[valgtLinje].stasjoner[i] + "</option>";
+      }
+      endestasjonSel.innerHTML = str;
+    }
+
+    endestasjonSel.onchange = function() {
+      var valgtEndestasjon = endestasjonSel.selectedIndex - 1;
+      utskrift.innerHTML = "Du har valgt startsstasjonen " + linjeliste[valgtLinje].stasjoner[valgtStartsstasjon]
+      + " og endestasjonen " + linjeliste[valgtLinje].stasjoner[valgtEndestasjon];
+    }
+
+    /*Videre er d egt bare å lage funksjoner som finner stasjonenes posisjon i arrayen.
+    stasjon1-stasjon2, for å få antall stasjoner. Til slutt legger man til
+    minsteprisen på 15 kr og maksimalprisen på 40 kr.
+*/
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+
+      var mikkel = {
+        fornavn: 'Mikkel',
+        etternavn: 'Furuberg',
+        telefonnummer: 41624232,
+        alder: 29
+      }
+
+      var bastian = {
+        fornavn: 'Bastian',
+        etternavn: 'Poppesen',
+        telefonnummer: 12532278,
+        alder: 25
+      }
+
+      var morten = {
+        fornavn: 'Morten',
+        etternavn: 'Lillesen',
+        telefonnummer: 12312356,
+        alder: 60
+      }
+
+      var eiere = [mikkel, bastian, morten]
+
+      var passop = {
+        navn: 'Passop',
+        rase: 'Huskey',
+        alder: 6,
+        eier: mikkel
+      }
+
+      var sid = {
+        navn: 'Sid',
+        rase: 'Dachs',
+        alder: 10,
+        eier: bastian
+      }
+
+      var sonja = {
+        navn: 'Sonja',
+        rase: 'Toller',
+        alder: 1,
+        eier: bastian
+      }
+
+      var max = {
+        navn: 'Max',
+        rase: 'Toller',
+        alder: 5,
+        eier: bastian
+      }
+
+      sonja.alder++;
+
+      var hunder = [passop, sid, sonja,max]
+
+      sonja.eier = mikkel
+
+      //utskrift.innerHTML = sonja.eier.fornavn;
+
+      for (var i = 0; i < eier.length; i++) {
+        if (eiere[i].alder >= 27) { //løkke for eiere som er 27 år eller eldre
+          utskrift.innerHTML += eiere[i].fornavn + '<br>';
+        }
+      }
+
+      for (var i = 0; i < hunder.length; i++) { //løkke for hunder som er 5 år eller elder
+        if (hunder[i].alder >= 5) {
+          utskrift.innerHTML += hunder[i].navn + '<br>';
+        }
+      }
+
+      var aldre = [];
+
+      for (var i = 0; i < hunder.length; i++) {
+        var funnet = false;
+        for (var j = 0; j < aldre.length; j++) {
+          if (hunder[i].alder == aldre[j]) {
+            funnet = true;
+          }
+        }
+        if (funnet == false) {
+          aldre.push(hunder[i].alder)
+        }
+      }
+
+      utskrift.innerHTML += aldre;
+
+
+
+
+    </script>
+  </body>
+</html>

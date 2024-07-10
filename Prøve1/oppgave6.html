@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById("utskrift");
+
+      var talliste = [2,3,5,7,11,13,17,19]
+      var favorittall = talliste[Math.floor(Math.random()*8)];
+
+      utskrift.innerHTML = "Mikkel sitt favorittall, er tallet: " + favorittall;
+
+
+    </script>
+
+  </body>
+</html>

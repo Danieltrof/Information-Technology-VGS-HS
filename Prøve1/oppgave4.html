@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      //oppgave 4a
+
+      var utskrift = document.getElementById("utskrift");
+/*
+      for (var i = 11; i <= 89; i++) { //vi definerer i som tallet vi starter med, altså 11. Vi sier til datamaskinen at vi skal addere i med 1 (i++), frem til vi kommer frem til et tall som er mindre eller lik 89.
+        utskrift.innerHTML += i + '<br>'; //Jeg brukte kommandoen <br>, sånn at det er lettere å få oversikt over tallene.
+      }
+*/
+      //oppgave 4b, jeg mener at oppgaven hadde vært lett å løse dersom vi fikk oppgitt formelen for aritmetisk rekke
+
+      var d = 0
+      for (var i = 1; i < 101; i++,d++) {
+        utskrift.innerHTML += i + '<br>'
+        if (i == 1) {
+          utskrift.innerHTML += i+d + '<br>'
+        }
+      }
+
+    </script>
+
+  </body>
+</html>

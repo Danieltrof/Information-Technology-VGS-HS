@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <canvas id="canvas" width="500" height="1000"></canvas>
+
+    <script type="text/javascript">
+
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+
+      var x = 10;
+      var y = 10;
+      var bredde = 200;
+      var hoyde = 10;
+
+      var teller = 0;
+      var antallRektangler = 11;
+
+      while (teller < antallRektangler) {
+        ctx.fillRect(x,y,bredde,hoyde);
+        ctx.fillRect(y,x,hoyde,bredde);
+        teller++;
+        y += 20;
+      }
+
+
+
+    </script>
+
+  </body>
+</html>

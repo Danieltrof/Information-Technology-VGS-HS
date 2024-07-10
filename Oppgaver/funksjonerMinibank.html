@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+
+      function dinSaldo(saldo) {
+        return 'Din nåværende saldo er ' + saldo;
+      }
+        var saldo = dinSaldo(10000);
+      //utskrift.innerHTML = saldo;
+
+
+      function nySaldo(saldo,uttak) {
+        var nySaldo = saldo - uttak;
+          if (uttak < 0) {
+          return 'Du har dessverre tastet inn en ugyldig sum.';
+          }
+          else if (uttak > 10000){
+            return 'Du har dessverre ikke nok til å ta ut denne summen';
+          }
+          else if (uttak <= 10000) {
+            var saldo = 10000 - uttak;
+            return 'Din nye saldo er ' + saldo;
+          }
+          else {
+            return 'Du må taste inn et tall.'
+          }
+      }
+      var uttak = Number(prompt('Hvor mye vil du ta ut?'))
+      var nySaldo = nySaldo(saldo,uttak)
+      utskrift.innerHTML = nySaldo;
+
+
+
+    </script>
+
+  </body>
+</html>

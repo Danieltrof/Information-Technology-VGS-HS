@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+
+      function produktetAvToTall(tall1,tall2) {
+        return tall1*tall2
+      }
+
+      var produkt = produktetAvToTall(2,3)
+    //  utskrift.innerHTML = produkt;
+
+      function navnOgAlder(fornavn,etternavn,alder) {
+        return 'Jeg heter ' + fornavn + ' ' + etternavn + ' og er ' + alder + ' år gammel.';
+      }
+/*
+      var fornavn = prompt('Hva er fornavnet ditt?');
+      var etternavn = prompt('Hva er etternavnet ditt?');
+      var alder = prompt('Hvor gammel er du?');
+
+      utskrift.innerHTML = navnOgAlder(fornavn,etternavn,alder);
+*/
+
+      function hundeårIMenneskeår(hundeår,menneskeår) {
+        var formell = menneskeår * hundeår;
+        return formell;
+      }
+/*
+      var hundeår = 7;
+      var menneskeår = Number(prompt('Hvor gammel er hunden i menneskeår?'))
+      var menneskeårTilHundeår = hundeårIMenneskeår(hundeår,menneskeår);
+      utskrift.innerHTML = 'Hunden er ' + menneskeårTilHundeår + ' år i hundeår';
+*/
+
+      function arealSirkel(radius) {
+        var areal = Math.PI * radius**2 / 2;
+        return areal.toFixed(3);              //toFixed runder av til så mange desimaltall du velger
+      }
+/*
+      var radius = Number(prompt('Skriv inn radiusen til sirkelen'));
+      var areal = arealSirkel(radius);
+      utskrift.innerHTML = areal;
+*/
+
+      function tilfeldigTall(tall1) {
+        var formell = Math.floor(Math.random()*(tall1+1));
+        return formell;
+      }
+/*
+      var tall1 = Number(prompt('Velg et tall'))
+      utskrift.innerHTML = tilfeldigTall(tall1);
+*/
+
+      
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      //oppgave 1a
+      var utskrift = document.getElementById("utskrift");
+      var tall1 = Number(prompt("Skriv inn et tall"));
+/*
+      if (tall1 == 10) {
+        utskrift.innerHTML = "Tallet " + tall + " er like mye som tallet 10"; //Dersom tallet er likt 10
+      }
+        else if (tall1 < 10) {
+        utskrift.innerHTML = "Tallet " + tall + " er mindre enn tallet 10"; //Dersom tallet er mindre enn 10
+        }
+        else if (tall1 > 10) {
+        utskrift.innerHTML = "Tallet " + tall + " er større enn tallet 10"; //Dersom tallet er større enn 10
+        }
+        else {
+          utskrift.innerHTML = "Det har oppstått en feil, prøv igjen"; //Dersom brukeren har tastet inn feil. f.eks. a.
+        }
+*/
+      //oppgave 1b
+
+      var tall2 = Number(prompt("Skriv inn et til tall"));
+      var sum = tall1+tall2
+      var produkt = tall1*tall2
+
+      utskrift.innerHTML = "Du har tastet inn tallene " + tall1 + " og " + tall2 +
+      ". <br> Dersom vi summerer tallene får vi " + sum +
+      ". <br> Produktet av tallene blir " + produkt;
+
+
+
+    </script>
+
+  </body>
+</html>

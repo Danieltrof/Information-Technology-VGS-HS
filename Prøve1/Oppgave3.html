@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+      <canvas id="canvas" width="400" height="400"></canvas>
+
+      <script type="text/javascript">
+
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        var x = 20;   // variablene definerer posisjonen til objektet i forhold til canvas. Her vil x definere hvor langt til høyre objektet skal være i forhold til canvas.
+        var y = 50;   // Her vil y definere hvor langt ned objektet skal være i forhold til canvas.
+        var bredde = 50; //Bredde vil definere hvor bred objektet vårt skal være. Altså hvor langt til høyre objektet vil være fra og med x.
+        var hoyde = 90;  ////Hoyde vil definere hvor høyt objektet vårt skal være. Altså hvor langt ned objektet skal være fra og med y.
+
+        ctx.fillStyle = 'black';
+        ctx.fillRect(x,y,bredde,hoyde); //de to første tallene definer posisjonen i forhold til canvas, de to andre definerer størrelsen til rektanglet;
+
+
+
+      </script>
+
+  </body>
+</html>

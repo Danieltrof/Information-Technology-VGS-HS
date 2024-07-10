@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext('2d');
+      var utskrift = document.getElementById("utskrift");
+
+      function tegne(x) {
+        ctx.fillStyle = "lightblue";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = "yellow";
+        ctx.beginPath();
+        ctx.arc(x,(canvas.height/4)+20,60,0,Math.PI*2)
+        ctx.fill();
+        ctx.closePath();
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(x-30,(canvas.height/6)+20,10,0,Math.PI*2)
+        ctx.arc(x+30,(canvas.height/6)+20,10,0,Math.PI*2)
+        ctx.fill();
+        ctx.closePath();
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.arc(x-30,(canvas.height/6)+20,3,0,Math.PI*2)
+        ctx.arc(x+30,(canvas.height/6)+20,3,0,Math.PI*2)
+        ctx.fill();
+        ctx.closePath();
+        ctx.strokeStyle = "red";
+        ctx.beginPath();
+        ctx.arc(x,(canvas.height/4)+20,40,0,Math.PI)
+        ctx.stroke();
+        ctx.closePath();
+        ctx.fillStyle = "white";
+        ctx.fillRect(x/2,canvas.height/16,40,20);
+        ctx.fillRect((x/2)+80,canvas.height/16,40,20);
+        ctx.fillRect((x/2)+160,canvas.height/16,40,20);
+        ctx.fillRect((x/2)+240,canvas.height/16,40,20);
+        ctx.fillRect((x/2)-80,canvas.height/16,40,20);
+        ctx.fillRect((x/2)-160,canvas.height/16,40,20);
+      }
+
+      var i = 0;
+      var antallDager = 0;
+
+      function okei() {
+        i++;
+        tegne(i);
+        if (i==canvas.width) {
+          antallDager++;
+          i=0;
+        }
+        utskrift.innerHTML = "Antall dager: " + antallDager;
+      }
+
+      var interval = setInterval(okei,10);
+
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h2>Antall Watt produsert</h2>
+    <input type="Number" id="morgenVindInp" placeholder="m/s kl:2-8">
+    <input type="Number" id="dagVindInp" placeholder="m/s kl:8-14">
+    <input type="Number" id="kveldVindInp" placeholder="m/s kl:14-20">
+    <input type="Number" id="nattvindInp" placeholder="m/s kl:20-2">
+    <button id="knapp">Bekreft</button>
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+    var utskrift = document.getElementById('utskrift');
+    var morgenVindInp = document.getElementById('morgenVindInp');
+    var dagVindInp = document.getElementById('dagVindInp');
+    var kveldVindInp = document.getElementById('kveldVindInp');
+    var nattvindInp = document.getElementById('nattvindInp');
+    var knapp = document.getElementById('knapp');
+
+    knapp.onclick = function() {
+      antallWattMorgen(morgenVindInp.value);
+      antallWattDag(dagVindInp.value);
+      antallWattKveld(kveldVindInp.value);
+      antallWattNatt(nattvindInp.value);
+    }
+
+    function antallWattMorgen() {
+      if (morgenVindInp.value <0) {
+        utskrift.innerHTML += morgenVindInp.value + '<br>Du har tastet inn et ugyldig tall';
+      }
+      else if (morgenVindInp.value <=1.5) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + morgenVindInp.value + "m/s, produserer vindmøllen cirka 0 Watt i timen.";
+      }
+      else if (morgenVindInp.value <=3.3) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + morgenVindInp.value + "m/s, produserer vindmøllen cirka 2 Watt i timen. Altså vil den produsere cirka " + 2*6 + "Watt under denne perioden.";
+      }
+      else if (morgenVindInp.value <=5.4) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + morgenVindInp.value + "m/s, produserer vindmøllen cirka 10 Watt i timen. Altså vil den produsere cirka " + 10*6 + "Watt under denne perioden.";
+      }
+      else if (morgenVindInp.value <=7.9) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + morgenVindInp.value + "m/s, produserer vindmøllen cirka 60 Watt i timen. Altså vil den produsere cirka " + 60*6 + "Watt under denne perioden.";
+      }
+      else if (morgenVindInp.value <=10.7) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + morgenVindInp.value + "m/s, produserer vindmøllen cirka 150 Watt i timen. Altså vil den produsere cirka " + 150*6 + "Watt under denne perioden.";
+      }
+      else if (morgenVindInp.value <=13.8) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + morgenVindInp.value + "m/s, produserer vindmøllen cirka 400 Watt i timen. Altså vil den produsere cirka " + 400*6 + "Watt under denne perioden.";
+      }
+      else if (morgenVindInp.value <=15) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + morgenVindInp.value + "m/s, produserer vindmøllen cirka 500 Watt i timen. Altså vil den produsere cirka " + 500*6 + "Watt under denne perioden.";
+      }
+      else if (morgenVindInp.value >15) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + morgenVindInp.value + "m/s, vil vindmøllen stoppe av sikkerhetsårsaker og dermed produsere 0 Watt i timen";
+      }
+    }
+
+    function antallWattDag() {
+      if (dagVindInp.value <0) {
+        utskrift.innerHTML += dagVindInp.value + '<br>Du har tastet inn et ugyldig tall';
+      }
+      else if (dagVindInp.value <=1.5) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + dagVindInp.value + "m/s, produserer vindmøllen cirka 0 Watt i timen";
+      }
+      else if (dagVindInp.value <=3.3) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + dagVindInp.value + "m/s, produserer vindmøllen cirka 2 Watt i timen. Altså vil den produsere cirka " + 2*6 + "Watt under denne perioden.";
+      }
+      else if (dagVindInp.value <=5.4) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + dagVindInp.value + "m/s, produserer vindmøllen cirka 10 Watt i timen. Altså vil den produsere cirka " + 10*6 + "Watt under denne perioden.";
+      }
+      else if (dagVindInp.value <=7.9) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + dagVindInp.value + "m/s, produserer vindmøllen cirka 60 Watt i timen. Altså vil den produsere cirka " + 60*6 + "Watt under denne perioden.";
+      }
+      else if (dagVindInp.value <=10.7) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + dagVindInp.value + "m/s, produserer vindmøllen cirka 150 Watt i timen. Altså vil den produsere cirka " + 150*6 + "Watt under denne perioden.";
+      }
+      else if (dagVindInp.value <=13.8) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + dagVindInp.value + "m/s, produserer vindmøllen cirka 400 Watt i timen. Altså vil den produsere cirka " + 400*6 + "Watt under denne perioden.";
+      }
+      else if (dagVindInp.value <=15) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + dagVindInp.value + "m/s, produserer vindmøllen cirka 500 Watt i timen. Altså vil den produsere cirka " + 500*6 + "Watt under denne perioden.";
+      }
+      else if (dagVindInp.value >15) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + dagVindInp.value + "m/s, vil vindmøllen stoppe av sikkerhetsårsaker og dermed produsere 0 Watt i timen";
+      }
+    }
+
+    function antallWattKveld() {
+      if (kveldVindInp.value <0) {
+        utskrift.innerHTML += kveldVindInp.value + '<br>Du har tastet inn et ugyldig tall';
+      }
+      else if (kveldVindInp.value <=1.5) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + kveldVindInp.value + "m/s, produserer vindmøllen cirka 0 Watt i timen";
+      }
+      else if (kveldVindInp.value <=3.3) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + kveldVindInp.value + "m/s, produserer vindmøllen cirka 2 Watt i timen. Altså vil den produsere cirka " + 2*6 + "Watt under denne perioden.";
+      }
+      else if (kveldVindInp.value <=5.4) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + kveldVindInp.value + "m/s, produserer vindmøllen cirka 10 Watt i timen. Altså vil den produsere cirka " + 10*6 + "Watt under denne perioden.";
+      }
+      else if (kveldVindInp.value <=7.9) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + kveldVindInp.value + "m/s, produserer vindmøllen cirka 60 Watt i timen. Altså vil den produsere cirka " + 60*6 + "Watt under denne perioden.";
+      }
+      else if (kveldVindInp.value <=10.7) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + kveldVindInp.value + "m/s, produserer vindmøllen cirka 150 Watt i timen. Altså vil den produsere cirka " + 150*6 + "Watt under denne perioden.";
+      }
+      else if (kveldVindInp.value <=13.8) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + kveldVindInp.value + "m/s, produserer vindmøllen cirka 400 Watt i timen. Altså vil den produsere cirka " + 400*6 + "Watt under denne perioden.";
+      }
+      else if (kveldVindInp.value <=15) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + kveldVindInp.value + "m/s, produserer vindmøllen cirka 500 Watt i timen. Altså vil den produsere cirka " + 500*6 + "Watt under denne perioden.";
+      }
+      else if (kveldVindInp.value >15) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + kveldVindInp.value + "m/s, vil vindmøllen stoppe av sikkerhetsårsaker og dermed produsere 0 Watt i timen";
+      }
+    }
+
+    function antallWattNatt() {
+      if (nattvindInp.value <0) {
+        utskrift.innerHTML += nattvindInp.value + '<br>Du har tastet inn et ugyldig tall';
+      }
+      else if (nattvindInp.value <=1.5) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + nattvindInp.value + "m/s, produserer vindmøllen cirka 0 Watt i timen";
+      }
+      else if (nattvindInp.value <=3.3) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + nattvindInp.value + "m/s, produserer vindmøllen cirka 2 Watt i timen. Altså vil den produsere cirka " + 2*6 + "Watt under denne perioden.";
+      }
+      else if (nattvindInp.value <=5.4) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + nattvindInp.value + "m/s, produserer vindmøllen cirka 10 Watt i timen. Altså vil den produsere cirka " + 10*6 + "Watt under denne perioden.";
+      }
+      else if (nattvindInp.value <=7.9) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + nattvindInp.value + "m/s, produserer vindmøllen cirka 60 Watt i timen. Altså vil den produsere cirka " + 60*6 + "Watt under denne perioden.";
+      }
+      else if (nattvindInp.value <=10.7) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + nattvindInp.value + "m/s, produserer vindmøllen cirka 150 Watt i timen. Altså vil den produsere cirka " + 150*6 + "Watt under denne perioden.";
+      }
+      else if (nattvindInp.value <=13.8) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + nattvindInp.value + "m/s, produserer vindmøllen cirka 400 Watt i timen. Altså vil den produsere cirka " + 400*6 + "Watt under denne perioden.";
+      }
+      else if (nattvindInp.value <=15) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + nattvindInp.value + "m/s, produserer vindmøllen cirka 500 Watt i timen. Altså vil den produsere cirka " + 500*6 + "Watt under denne perioden.";
+      }
+      else if (nattvindInp.value >15) {
+        utskrift.innerHTML += "<br>Dersom det er vind på " + nattvindInp.value + "m/s, vil vindmøllen stoppe av sikkerhetsårsaker og dermed produsere 0 Watt i timen";
+      }
+    }
+
+    
+
+
+    </script>
+
+  </body>
+</html>

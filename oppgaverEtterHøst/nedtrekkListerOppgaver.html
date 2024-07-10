@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <select id="ukedager">
+      <option>Velg en ukedag</option>
+    </select>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var ukedager = document.getElementById('ukedager');
+      var utskrift = document.getElementById('utskrift');
+
+      var ukedagerArray = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
+      var str = "";
+
+      for (var i = 0; i < ukedagerArray.length; i++) {
+        str += '<option>' + ukedagerArray[i] + "</option>";
+      }
+      ukedager.innerHTML += str
+
+      ukedager.onchange = function() {
+        var valgtIndeks = ukedager.selectedIndex;
+        if (valgtIndeks == 0) {
+          utskrift.innerHTML = "Du må velge en av ukedagene";
+        }
+        else if (valgtIndeks == 1) {
+          utskrift.innerHTML = "Du har valgt: " + ukedagerArray[valgtIndeks-1] +
+          ". Du har Psykologi, Historie og IT denne dagen.";
+        }
+        else if (valgtIndeks == 2) {
+          utskrift.innerHTML = "Du har valgt: " + ukedagerArray[valgtIndeks-1] +
+          ". Du har Gym og Matte denne dagen.";
+        }
+        else if (valgtIndeks == 3) {
+          utskrift.innerHTML = "Du har valgt: " + ukedagerArray[valgtIndeks-1] +
+          ". Du har Norsk og RLE denne dagen.";
+        }
+        else if (valgtIndeks == 4) {
+          utskrift.innerHTML = "Du har valgt: " + ukedagerArray[valgtIndeks-1] +
+          ". Du har IT, Norsk og Psykologi denne dagen.";
+        }
+        else if (valgtIndeks == 5) {
+          utskrift.innerHTML = "Du har valgt: " + ukedagerArray[valgtIndeks-1] +
+          ". Du har Matte, Historie og RLE denne dagen.";
+        }
+        else if (valgtIndeks == 6) {
+          utskrift.innerHTML = "Du har valgt: " + ukedagerArray[valgtIndeks-1] +
+          ". Du har ikke skole denne dagen.";
+        }
+        else if (valgtIndeks == 7) {
+          utskrift.innerHTML = "Du har valgt: " + ukedagerArray[valgtIndeks-1] +
+          ". Du har ikke skole denne dagen.";
+        }
+      }
+
+
+
+    </script>
+
+  </body>
+</html>

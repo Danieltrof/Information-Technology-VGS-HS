@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <select id="bilmerkerSel"></select>
+
+    <select id="modellerSel"></select>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+    var bilmerkerSel = document.getElementById('bilmerkerSel')
+    var modellerSel = document.getElementById('modellerSel')
+    var utskrift = document.getElementById('utskrift')
+
+    var bmw = {
+      navn: "BMW",
+      modeller: ["i3", "x5", "5-serie sudan","i8"]
+    }
+
+    var mercedes = {
+      navn: "Mercedes-Benz",
+      modeller: ["EQC", "CLA", "Q7"]
+    }
+
+    var audi = {
+      navn: "Audi",
+      modeller: ["TT", "r8", "a4"]
+    }
+
+    var toyota = {
+      navn: "Toyota",
+      modeller: ["Yaris", "Avensis", "Corolla"]
+    }
+
+    var merkeliste = [bmw, mercedes, audi, toyota];
+
+    var str = "<option>Velg et bilmerke</option>";
+
+    for (var i = 0; i < merkeliste.length; i++) {
+      str += "<option>" + merkeliste[i].navn + "</option>"
+    }
+
+    bilmerkerSel.innerHTML = str;
+
+    var valgtMerke;
+
+    bilmerkerSel.onchange = function() {
+      valgtMerke = bilmerkerSel.selectedIndex - 1;
+      str = "<option>Velg en modell</option>";
+      for (var i = 0; i < merkeliste[valgtMerke].modeller.length; i++) {
+        str += "<option>" + merkeliste[valgtMerke].modeller[i] + "</option>";
+      }
+      modellerSel.innerHTML = str;
+    }
+
+    modellerSel.onchange = function() {
+      var valgtModell = modellerSel.selectedIndex - 1;
+      utskrift.innerHTML = "Du har valgt modellen " + merkeliste[valgtMerke].modeller[valgtModell] +
+      ", fra " + merkeliste[valgtMerke].navn;
+    }
+
+        </script>
+
+  </body>
+</html>

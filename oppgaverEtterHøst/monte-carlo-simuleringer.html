@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <p id="utskrift"></p>
+
+    <script type="text/javascript">
+
+      var utskrift = document.getElementById('utskrift');
+
+      function terning() {
+        return Math.floor(Math.random()*6)+1;
+      }
+
+      var antall = 0;
+      var antallKast = 100000;
+
+      for (var i = 0; i < antallKast; i++) {
+        var kast1 = terning();
+        var kast2 = terning();
+        if (kast1 == kast2 ) {
+          antall++;
+        }
+      }
+
+      //utskrift.innerHTML = "Antall: " + antall + "<br>" + "Prosent: " + Number(antall/antallKast*100) + "%";
+
+//for å få 6 og 6
+/*
+      var kast1 = terning();
+      var kast2 = terning();
+      var antallKast = 1;
+      utskrift.innerHTML += "Du fikk: " + kast1 + " og " + kast2 + "<br>";
+
+      while (kast1 != 6 || kast2 != 6) {
+          kast1 = terning();
+          kast2 = terning();
+          antallKast++;
+          utskrift.innerHTML += "Du fikk: " + kast1 + " og " + kast2 + "<br>";
+        }
+
+      utskrift.innerHTML += "<br>" + "Antall kast: " + antallKast;
+*/
+      function nKast(n) {
+        var alleKastene = [];
+        for (var i = 0; i < n; i++) {
+          alleKastene.push(terning());
+        }
+        return alleKastene;
+      }
+
+      antallKast = 0;
+      var ferdig = false;
+
+      while (!ferdig) {
+        var nyeKast = nKast(5);
+        ferdig = true;
+        for (var i = 0; i < nyeKast.length; i++) {
+          if (nyeKast[i] != 6) {
+            ferdig = false;
+            break;
+          }
+        }
+        antallKast++;
+      }
+
+      utskrift.innerHTML = "Det tok deg: " + antallKast + " forsøk, for å få bare 6ere på alle terningene";
+
+    </script>
+
+  </body>
+</html>
